@@ -20,6 +20,14 @@ A centralized, responsive web platform designed for human resources departments 
 
 ---
 
+## Live Deployment
+
+- **Live Web Application**: [https://vanguard-hr-e4dcf3.9pm.ai](https://vanguard-hr-e4dcf3.9pm.ai)
+- **GitHub Repository**: [https://github.com/SIFOR-GAMES/vanguard-hr](https://github.com/SIFOR-GAMES/vanguard-hr)
+- **Hosted on**: [9pm.ai](https://9pm.ai)
+
+---
+
 ## Demo Credentials
 
 | Role | Email | Password | Permissions |
