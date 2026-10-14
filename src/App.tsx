@@ -28,10 +28,7 @@ export const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(() => auth.getCurrentUser());
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  // Layout & Theme
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('vanguard_theme') === 'dark';
-  });
+  // Layout
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Navigation State
@@ -47,16 +44,13 @@ export const App: React.FC = () => {
   const [payments, setPayments] = useState<SalaryPayment[]>(() => storage.getPayments());
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>(() => storage.getAuditLogs());
 
-  // Apply dark mode class to document
+  // Enforce pure white bright theme (u.ae benchmark)
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('vanguard_theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('vanguard_theme', 'light');
-    }
-  }, [darkMode]);
+    document.documentElement.classList.remove('dark');
+    try {
+      localStorage.removeItem('vanguard_theme');
+    } catch (e) {}
+  }, []);
 
   // Sync state helper
   const refreshData = () => {
@@ -246,7 +240,7 @@ export const App: React.FC = () => {
   }).length;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans">
       
       {/* Top Navigation */}
       <Navbar
@@ -254,8 +248,6 @@ export const App: React.FC = () => {
         onOpenLogin={() => setIsLoginOpen(true)}
         onLogout={handleLogout}
         onSwitchRole={handleSwitchRole}
-        darkMode={darkMode}
-        onToggleDarkMode={() => setDarkMode(!darkMode)}
         searchQuery={searchQuery}
         onSearchChange={(q) => {
           setSearchQuery(q);

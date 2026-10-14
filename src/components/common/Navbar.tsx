@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
-  Sun, 
-  Moon, 
   ShieldCheck, 
   LogOut, 
   LogIn, 
@@ -22,8 +20,6 @@ interface NavbarProps {
   onOpenLogin: () => void;
   onLogout: () => void;
   onSwitchRole: (role: UserRole) => void;
-  darkMode: boolean;
-  onToggleDarkMode: () => void;
   searchQuery: string;
   onSearchChange: (q: string) => void;
   onToggleMobileSidebar: () => void;
@@ -39,8 +35,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenLogin,
   onLogout,
   onSwitchRole,
-  darkMode,
-  onToggleDarkMode,
   searchQuery,
   onSearchChange,
   onToggleMobileSidebar,
@@ -86,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+    <header className="sticky top-0 z-30 bg-white backdrop-blur-md border-b border-slate-200/80 transition-colors">
       {/* UAE National Top Accent Stripe */}
       <div className="h-0.5 w-full flex">
         <div className="h-full w-1/4 bg-[#088450]" />
@@ -157,19 +151,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             {/* u.ae Style Language Button */}
             <div className="hidden sm:flex items-center">
-              <span className="px-2.5 py-1 text-xs font-arabic font-bold text-[#088450] dark:text-[#34D399] bg-[#E8F5E9] dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-800/80 cursor-default">
+              <span className="px-2.5 py-1 text-xs font-arabic font-bold text-[#088450] bg-[#E8F5E9] rounded-lg border border-emerald-200 cursor-default">
                 العربية
               </span>
             </div>
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={onToggleDarkMode}
-              className="p-2 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-              title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {darkMode ? <Sun className="w-4 h-4 text-[#BA9547]" /> : <Moon className="w-4 h-4 text-slate-600" />}
-            </button>
 
             {/* Data & Backup Tools Dropdown */}
             <div className="relative" ref={dataDropdownRef}>

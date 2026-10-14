@@ -8,7 +8,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
   return (
-    <footer className="bg-white dark:bg-[#0A0F1D] border-t border-slate-200 dark:border-slate-800 transition-colors mt-auto">
+    <footer className="bg-white border-t border-slate-200/80 transition-colors mt-auto">
       {/* UAE Flag Accent Stripe */}
       <div className="h-1 w-full flex">
         <div className="h-full w-1/4 bg-[#088450]" />

@@ -180,7 +180,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <>
       {/* Desktop Sticky Sidebar */}
       {!hideDesktop && (
-        <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md">
+        <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200/80 bg-white">
           <div className="sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
             {content}
           </div>
@@ -194,9 +194,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
             onClick={onCloseMobile}
           />
-          <div className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white dark:bg-[#0F172A] shadow-2xl z-10 flex flex-col border-r border-slate-200 dark:border-slate-800">
-            <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-              <span className="font-serif font-bold text-sm text-slate-900 dark:text-white">
+          <div className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white shadow-2xl z-10 flex flex-col border-r border-slate-200/80">
+            <div className="p-4 border-b border-slate-200/80 flex items-center justify-between">
+              <span className="font-serif font-bold text-sm text-slate-900">
                 HR Navigation
               </span>
               <button

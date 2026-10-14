@@ -91,7 +91,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       
       {/* 1. BRIGHT & AIRY HERO (u.ae Official Government Vibe) */}
-      <div className="relative rounded-3xl bg-gradient-to-b from-white via-white to-slate-50/70 dark:from-[#0F172A] dark:to-[#0A0F1D] p-8 sm:p-12 border border-slate-200/80 dark:border-slate-800 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.03)] text-center overflow-hidden">
+      <div className="relative rounded-3xl bg-white p-8 sm:p-12 border border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)] text-center overflow-hidden">
         
         {/* Subtle decorative background glow */}
         <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />

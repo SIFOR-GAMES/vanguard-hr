@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.never-dark-enabled, .never-dark-enabled *));
+
 @layer base {
   :root {
-    --bg-stationery: #F8FAFC;
+    --bg-stationery: #FFFFFF;
     --card-stationery: #FFFFFF;
     --border-stationery: #E2E8F0;
     --emerald-uae: #088450;
@@ -12,20 +14,9 @@
     --text-primary: #0F172A;
   }
 
-  .dark {
-    --bg-stationery: #0B1120;
-    --card-stationery: #0F172A;
-    --border-stationery: #1E293B;
-    --emerald-uae: #34D399;
-    --emerald-light: #064E3B;
-    --gold-uae: #D4AF37;
-    --gold-light: #2A2318;
-    --text-primary: #F8FAFC;
-  }
-
   body {
-    background-color: var(--bg-stationery);
-    color: var(--text-primary);
+    background-color: #FFFFFF;
+    color: #0F172A;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
   
@@ -58,37 +49,16 @@
   background: rgba(8, 132, 80, 0.5);
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.25);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.5);
-}
-
-/* u.ae Style Elevated Cards */
+/* u.ae Style Elevated Cards - Pure White */
 .card-uae {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04);
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-uae:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px -4px rgba(8, 132, 80, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
-  border-color: rgba(8, 132, 80, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(8, 132, 80, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+  border-color: rgba(8, 132, 80, 0.35);
 }
-
-.dark .card-uae {
-  background-color: #0F172A;
-  border: 1px solid #1E293B;
-  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3);
-}
-
-.dark .card-uae:hover {
-  transform: translateY(-2px);
-  border-color: rgba(52, 211, 153, 0.3);
-  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.4);
-}
-
