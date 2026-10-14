@@ -84,7 +84,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               Official System Audit Trail & Security Log
             </h1>
             <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
@@ -156,7 +156,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
                     {new Date(log.timestamp).toLocaleString()}
                   </td>
                   <td className="py-3 px-4 whitespace-nowrap">
-                    <span className="font-bold text-slate-900 dark:text-slate-100 block font-serif">{log.userName}</span>
+                    <span className="font-bold text-slate-900 block">{log.userName}</span>
                     <span className="text-[10px] text-slate-400">{log.userRole}</span>
                   </td>
                   <td className="py-3 px-4 whitespace-nowrap">

@@ -53,7 +53,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       maxWidth="md"
     >
       <div className="flex flex-col items-center justify-center pb-3 text-center">
-        <p className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
+        <p className="font-bold text-sm text-slate-900">
           Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
         </p>
         <p className="font-arabic text-xs text-[#846429] dark:text-[#D4AF37]" dir="rtl">

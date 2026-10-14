@@ -170,8 +170,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Footer Info */}
       <div className="px-5 pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-400 dark:text-slate-500">
-        <p className="font-serif font-bold text-slate-800 dark:text-slate-200">Office of H.H. Sh. Zayed Bin Hazza</p>
-        <p className="text-[10px] text-[#088450] dark:text-[#34D399] font-medium mt-0.5">HR Operations System</p>
+        <p className="font-bold text-slate-800">Office of H.H. Sh. Zayed Bin Hazza</p>
+        <p className="text-[10px] text-[#088450] font-medium mt-0.5">HR Operations System</p>
       </div>
     </div>
   );
@@ -196,7 +196,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           />
           <div className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white shadow-2xl z-10 flex flex-col border-r border-slate-200/80">
             <div className="p-4 border-b border-slate-200/80 flex items-center justify-between">
-              <span className="font-serif font-bold text-sm text-slate-900">
+              <span className="font-bold text-sm text-slate-900">
                 HR Navigation
               </span>
               <button

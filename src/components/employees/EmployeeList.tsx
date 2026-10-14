@@ -149,7 +149,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               Personnel & Staff Directory
             </h1>
             <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
@@ -345,8 +345,8 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
       {/* Main Content: Grid vs Table View */}
       {filteredEmployees.length === 0 ? (
         <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-800">
-          <Filter className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 font-serif">
+          <Filter className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-slate-800">
             No personnel records found
           </h3>
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
@@ -354,7 +354,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
           </p>
           <button
             onClick={resetFilters}
-            className="mt-4 px-4 py-2 bg-[#E8F5E9] text-[#088450] dark:bg-emerald-950/60 dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800 font-bold text-xs rounded-xl hover:bg-[#d4edd8] transition cursor-pointer"
+            className="mt-4 px-4 py-2 bg-[#E8F5E9] text-[#088450] border border-emerald-200 font-bold text-xs rounded-xl hover:bg-[#d4edd8] transition cursor-pointer"
           >
             Reset Filters
           </button>
@@ -370,7 +370,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               <div
                 key={emp.id}
                 onClick={() => onSelectEmployee(emp)}
-                className="card-uae rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 hover:border-[#088450] dark:hover:border-[#34D399] transition cursor-pointer group flex flex-col justify-between"
+                className="card-uae rounded-2xl p-5 border border-slate-200/80 hover:border-[#088450] transition cursor-pointer group flex flex-col justify-between"
               >
                 <div>
                   {/* Card Header */}
@@ -379,11 +379,11 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                       <img
                         src={emp.photoUrl || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80'}
                         alt={emp.firstName}
-                        className="w-12 h-12 rounded-xl object-cover ring-1 ring-[#E7DEC8] dark:ring-stone-700 group-hover:ring-[#BA9547] transition"
+                        className="w-12 h-12 rounded-xl object-cover ring-1 ring-slate-200 group-hover:ring-[#088450] transition"
                       />
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-bold text-sm text-stone-900 dark:text-white group-hover:text-[#846429] dark:group-hover:text-[#E2C687] transition font-serif">
+                          <h3 className="font-bold text-sm text-slate-900 group-hover:text-[#088450] transition">
                             {emp.firstName} {emp.lastName}
                           </h3>
                         </div>
@@ -508,7 +508,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                             className="w-9 h-9 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-slate-700"
                           />
                           <div>
-                            <p className="font-bold text-slate-900 dark:text-white font-serif">
+                            <p className="font-bold text-slate-900">
                               {emp.firstName} {emp.lastName}
                             </p>
                             <p className="text-[11px] text-slate-500 font-medium">

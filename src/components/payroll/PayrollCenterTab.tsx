@@ -78,7 +78,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Payroll & Salary Payment Ledger
           </h1>
           <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
@@ -205,7 +205,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                           onClick={() => onSelectEmployee(emp)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#088450] dark:group-hover:text-[#34D399] transition font-serif">
+                          <p className="font-bold text-slate-900 group-hover:text-[#088450] transition">
                             {emp.firstName} {emp.lastName}
                           </p>
                           <p className="text-[11px] text-slate-400 font-mono">

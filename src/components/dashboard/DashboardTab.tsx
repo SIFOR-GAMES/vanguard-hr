@@ -103,7 +103,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
           </span>
         </div>
 
-        <h1 className="font-serif text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-3xl mx-auto leading-tight">
+        <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
           Office of His Highness Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
         </h1>
         <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 font-medium max-w-xl mx-auto">

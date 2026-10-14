@@ -115,7 +115,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
               Document Compliance & Expiry Tracking
             </h1>
             <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-200 dark:border-rose-900">
@@ -152,7 +152,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
             </span>
             <AlertTriangle className="w-4 h-4 text-rose-700" />
           </div>
-          <p className="text-2xl font-black text-rose-700 dark:text-rose-400 mt-2 font-serif">
+          <p className="text-2xl font-black text-rose-700 dark:text-rose-400 mt-2 font-mono">
             {expiredCount}
           </p>
           <p className="text-[11px] text-stone-500 mt-1">Requires immediate renewal</p>
@@ -172,7 +172,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
             </span>
             <Clock className="w-4 h-4 text-amber-800" />
           </div>
-          <p className="text-2xl font-black text-amber-800 dark:text-amber-400 mt-2 font-serif">
+          <p className="text-2xl font-black text-amber-800 dark:text-amber-400 mt-2 font-mono">
             {expiring30Count}
           </p>
           <p className="text-[11px] text-stone-500 mt-1">Submit renewal papers</p>
@@ -192,7 +192,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
             </span>
             <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400" />
           </div>
-          <p className="text-2xl font-black text-amber-800 dark:text-amber-300 mt-2 font-serif">
+          <p className="text-2xl font-black text-amber-800 dark:text-amber-300 mt-2 font-mono">
             {expiring60Count}
           </p>
           <p className="text-[11px] text-slate-500 mt-1">Upcoming renewals queue</p>
@@ -212,7 +212,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
             </span>
             <CheckCircle2 className="w-4 h-4 text-[#088450] dark:text-[#34D399]" />
           </div>
-          <p className="text-2xl font-black text-[#088450] dark:text-[#34D399] mt-2 font-serif">
+          <p className="text-2xl font-black text-[#088450] dark:text-[#34D399] mt-2 font-mono">
             {validCount}
           </p>
           <p className="text-[11px] text-slate-500 mt-1">&gt; 60 days validity remaining</p>
@@ -290,7 +290,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                           onClick={() => onSelectEmployee(doc.employee!)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#088450] dark:group-hover:text-[#34D399] transition font-serif">
+                          <p className="font-bold text-slate-900 group-hover:text-[#088450] transition">
                             {doc.employee.firstName} {doc.employee.lastName}
                           </p>
                           <p className="text-[11px] text-slate-400 font-mono">

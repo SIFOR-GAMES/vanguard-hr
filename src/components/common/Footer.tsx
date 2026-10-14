@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-3">
               <div>
-                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug">
+                <h3 className="font-bold text-slate-900 text-sm sm:text-base leading-snug">
                   Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
                 </h3>
                 <p className="font-arabic text-xs text-[#088450] dark:text-[#34D399] font-bold mt-0.5" dir="rtl">

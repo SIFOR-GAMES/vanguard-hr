@@ -104,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                  <span className="font-serif font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-slate-100 leading-tight">
+                  <span className="font-bold text-sm sm:text-base tracking-tight text-slate-900 leading-tight">
                     Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
                   </span>
                 </div>
