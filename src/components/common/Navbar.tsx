@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-[#FAF7F2]/95 dark:bg-[#141210]/95 backdrop-blur-md border-b border-[#E7DEC8] dark:border-[#2E2822] transition-colors">
+    <header className="sticky top-0 z-30 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
@@ -90,28 +90,28 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={onToggleMobileSidebar}
-              className="lg:hidden p-2 rounded-lg text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-[#F2ECE1] dark:hover:bg-stone-800"
+              className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
               aria-label="Toggle Navigation"
             >
               <Menu className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="p-1 rounded-xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs flex items-center justify-center">
+              <div className="p-1 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs flex items-center justify-center">
                 <RoyalEmblem size="sm" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                  <span className="font-serif font-bold text-sm sm:text-base tracking-tight text-stone-900 dark:text-stone-100 leading-tight">
+                  <span className="font-serif font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-slate-100 leading-tight">
                     Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#9E7A36] dark:text-[#D4AF37]">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1E683E] dark:text-[#34D399]">
                     HR System
                   </span>
-                  <span className="text-stone-300 dark:text-stone-700">•</span>
-                  <span className="font-arabic text-[12px] sm:text-xs text-stone-600 dark:text-stone-400 font-medium" dir="rtl">
+                  <span className="text-slate-300 dark:text-slate-700">•</span>
+                  <span className="font-arabic text-[12px] sm:text-xs text-slate-600 dark:text-slate-400 font-medium" dir="rtl">
                     مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
                   </span>
                 </div>
@@ -122,18 +122,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Center: Simplified Search Bar */}
           <div className="flex-1 max-w-sm mx-2 hidden lg:block">
             <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search personnel, ID, visa, passport..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#BA9547] text-stone-900 dark:text-stone-100 placeholder-stone-400 transition"
+                className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-slate-100 placeholder-slate-400 transition"
               />
               {searchQuery && (
                 <button
                   onClick={() => onSearchChange('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 font-medium"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-medium"
                 >
                   Clear
                 </button>
@@ -156,23 +156,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="relative" ref={dataDropdownRef}>
               <button
                 onClick={() => setDataDropdownOpen(!dataDropdownOpen)}
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-stone-700 dark:text-stone-300 bg-white dark:bg-[#1C1917] hover:bg-[#F8F5EE] dark:hover:bg-stone-800 rounded-xl transition border border-[#E7DEC8] dark:border-[#383129]"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl transition border border-slate-200 dark:border-slate-700 shadow-xs"
                 title="Data Options"
               >
                 <span>Backup</span>
-                <ChevronDown className="w-3 h-3 text-stone-400" />
+                <ChevronDown className="w-3 h-3 text-slate-400" />
               </button>
 
               {dataDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-[#1C1917] rounded-xl shadow-xl border border-[#E7DEC8] dark:border-[#383129] py-1.5 z-40 text-xs">
+                <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 z-40 text-xs">
                   <button
                     onClick={() => {
                       setDataDropdownOpen(false);
                       onExportBackup();
                     }}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-stone-700 dark:text-stone-200 hover:bg-[#F8F5EE] dark:hover:bg-stone-800 text-left transition"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 text-left transition"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#BA9547]" />
+                    <Download className="w-3.5 h-3.5 text-[#1E683E]" />
                     <span>Export JSON Backup</span>
                   </button>
                   <button
@@ -180,12 +180,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                       setDataDropdownOpen(false);
                       fileInputRef.current?.click();
                     }}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-stone-700 dark:text-stone-200 hover:bg-[#F8F5EE] dark:hover:bg-stone-800 text-left transition"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 text-left transition"
                   >
-                    <Upload className="w-3.5 h-3.5 text-emerald-600" />
+                    <Upload className="w-3.5 h-3.5 text-[#1E683E]" />
                     <span>Import JSON Backup</span>
                   </button>
-                  <div className="border-t border-[#E7DEC8] dark:border-[#2E2822] my-1" />
+                  <div className="border-t border-slate-100 dark:border-slate-700 my-1" />
                   <button
                     onClick={() => {
                       setDataDropdownOpen(false);
@@ -214,34 +214,34 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="relative" ref={roleDropdownRef}>
                 <button
                   onClick={() => setRoleDropdownOpen(!roleDropdownOpen)}
-                  className="flex items-center gap-2.5 p-1 sm:px-2.5 sm:py-1 rounded-xl bg-white dark:bg-[#1C1917] hover:bg-[#F8F5EE] dark:hover:bg-stone-800 border border-[#E7DEC8] dark:border-[#383129] transition"
+                  className="flex items-center gap-2.5 p-1 sm:px-2.5 sm:py-1 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 shadow-xs transition"
                 >
                   <img
                     src={currentUser.avatarUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80'}
                     alt={currentUser.name}
-                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#BA9547]/40"
+                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#1E683E]/40"
                   />
                   <div className="hidden md:block text-left">
-                    <p className="text-xs font-bold text-stone-900 dark:text-white leading-tight">
+                    <p className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
                       {currentUser.name}
                     </p>
-                    <p className="text-[10px] text-[#A17D34] dark:text-[#D4AF37] font-semibold">
+                    <p className="text-[10px] text-[#1E683E] dark:text-[#34D399] font-bold">
                       {currentUser.role}
                     </p>
                   </div>
-                  <ChevronDown className="w-3.5 h-3.5 text-stone-400 hidden sm:block" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 hidden sm:block" />
                 </button>
 
                 {roleDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#1C1917] rounded-2xl shadow-2xl border border-[#E7DEC8] dark:border-[#383129] p-2 z-40">
-                    <div className="px-3 py-2 border-b border-[#E7DEC8] dark:border-[#2E2822]">
-                      <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider">
+                  <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-2 z-40">
+                    <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-700">
+                      <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                         Active Profile
                       </p>
-                      <p className="text-sm font-bold text-stone-900 dark:text-white mt-0.5">
+                      <p className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
                         {currentUser.name}
                       </p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
                         {currentUser.email}
                       </p>
                       <div className="mt-1.5">
@@ -252,7 +252,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
 
                     <div className="pt-2 pb-1">
-                      <p className="px-3 text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
+                      <p className="px-3 text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
                         Switch Role
                       </p>
                       {roles.map((r) => (
@@ -264,20 +264,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }}
                           className={`w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg transition ${
                             currentUser.role === r
-                              ? 'bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] font-bold border border-[#ECDDBA] dark:border-[#5A451F]'
-                              : 'text-stone-700 dark:text-stone-300 hover:bg-[#F8F5EE] dark:hover:bg-stone-800'
+                              ? 'bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] font-bold border border-emerald-200 dark:border-emerald-800'
+                              : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                           }`}
                         >
                           <span className="flex items-center gap-2">
-                            <ShieldCheck className="w-3.5 h-3.5 text-[#BA9547]" />
+                            <ShieldCheck className="w-3.5 h-3.5 text-[#1E683E]" />
                             {r}
                           </span>
-                          {currentUser.role === r && <CheckCircle2 className="w-3.5 h-3.5 text-[#BA9547]" />}
+                          {currentUser.role === r && <CheckCircle2 className="w-3.5 h-3.5 text-[#1E683E]" />}
                         </button>
                       ))}
                     </div>
 
-                    <div className="border-t border-[#E7DEC8] dark:border-[#2E2822] pt-1 mt-1">
+                    <div className="border-t border-slate-100 dark:border-slate-700 pt-1 mt-1">
                       <button
                         onClick={() => {
                           setRoleDropdownOpen(false);

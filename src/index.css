@@ -2,21 +2,21 @@
 
 @layer base {
   :root {
-    --bg-stationery: #FAF7F2;
+    --bg-stationery: #F8FAFC;
     --card-stationery: #FFFFFF;
-    --border-stationery: #E7DEC8;
+    --border-stationery: #E2E8F0;
     --gold-primary: #BA9547;
-    --gold-dark: #846429;
-    --text-primary: #1C1917;
+    --gold-dark: #1E683E;
+    --text-primary: #0F172A;
   }
 
   .dark {
-    --bg-stationery: #141210;
-    --card-stationery: #1C1917;
-    --border-stationery: #2E2923;
+    --bg-stationery: #0B1120;
+    --card-stationery: #151E32;
+    --border-stationery: #1E293B;
     --gold-primary: #D4AF37;
-    --gold-dark: #A17D34;
-    --text-primary: #F5F5F4;
+    --gold-dark: #34D399;
+    --text-primary: #F8FAFC;
   }
 
   body {
@@ -30,7 +30,7 @@
   }
 
   ::selection {
-    background-color: #BA9547;
+    background-color: #1E683E;
     color: #FFFFFF;
   }
 }

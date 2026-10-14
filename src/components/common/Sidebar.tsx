@@ -90,8 +90,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               }}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-semibold transition-all group ${
                 isActive
-                  ? 'bg-[#BA9547] text-white shadow-md shadow-[#BA9547]/25 ring-1 ring-[#A17D34]'
-                  : 'text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-[#F2ECE1] dark:hover:bg-stone-800/80'
+                  ? 'bg-[#1E683E] text-white shadow-md shadow-[#1E683E]/20'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80'
               }`}
             >
               <div className="flex items-center gap-3 min-w-0">
@@ -99,7 +99,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className={`p-2 rounded-lg transition ${
                     isActive
                       ? 'bg-white/20 text-white'
-                      : 'bg-white dark:bg-stone-800 text-[#846429] dark:text-[#E2C687] group-hover:bg-[#FBF8F0] dark:group-hover:bg-[#2A2318] border border-[#E7DEC8] dark:border-[#383129]'
+                      : 'bg-slate-50 dark:bg-slate-800 text-[#1E683E] dark:text-[#34D399] group-hover:bg-slate-100 dark:group-hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -108,12 +108,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <div className="flex items-center gap-2">
                     <span className="truncate">{item.label}</span>
                     {item.highlight && !isActive && (
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#BA9547]" />
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1E683E]" />
                     )}
                   </div>
                   <p
                     className={`text-[11px] truncate font-normal mt-0.5 ${
-                      isActive ? 'text-amber-100' : 'text-stone-400 dark:text-stone-500'
+                      isActive ? 'text-emerald-100' : 'text-slate-400 dark:text-slate-500'
                     }`}
                   >
                     {item.description}
@@ -125,7 +125,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <span
                   className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
                     isActive
-                      ? 'bg-white text-[#846429]'
+                      ? 'bg-white text-[#1E683E]'
                       : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-200 dark:border-rose-900'
                   }`}
                 >
@@ -167,9 +167,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       {/* Footer Info */}
-      <div className="px-5 pt-4 border-t border-[#E7DEC8] dark:border-[#2E2822] text-[11px] text-stone-400 dark:text-stone-500">
-        <p className="font-serif font-bold text-stone-800 dark:text-stone-200">Office of H.H. Sh. Zayed Bin Hazza</p>
-        <p className="text-[10px] text-[#A17D34] mt-0.5">HR Operations System</p>
+      <div className="px-5 pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-400 dark:text-slate-500">
+        <p className="font-serif font-bold text-slate-800 dark:text-slate-200">Office of H.H. Sh. Zayed Bin Hazza</p>
+        <p className="text-[10px] text-[#1E683E] dark:text-[#34D399] font-medium mt-0.5">HR Operations System</p>
       </div>
     </div>
   );
@@ -177,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Desktop Sticky Sidebar */}
-      <aside className="hidden lg:block w-72 shrink-0 border-r border-[#E7DEC8] dark:border-[#2E2822] bg-[#FAF7F2]/80 dark:bg-[#141210]/80 backdrop-blur-md">
+      <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md">
         <div className="sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
           {content}
         </div>
@@ -187,17 +187,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="fixed inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
             onClick={onCloseMobile}
           />
-          <div className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-[#FAF7F2] dark:bg-[#141210] shadow-2xl z-10 flex flex-col border-r border-[#E7DEC8] dark:border-[#2E2822]">
-            <div className="p-4 border-b border-[#E7DEC8] dark:border-[#2E2822] flex items-center justify-between">
-              <span className="font-serif font-bold text-sm text-stone-900 dark:text-white">
+          <div className="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white dark:bg-[#0F172A] shadow-2xl z-10 flex flex-col border-r border-slate-200 dark:border-slate-800">
+            <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <span className="font-serif font-bold text-sm text-slate-900 dark:text-white">
                 HR Navigation
               </span>
               <button
                 onClick={onCloseMobile}
-                className="p-1 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-[#F2ECE1] dark:hover:bg-stone-800"
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 <X className="w-5 h-5" />
               </button>
