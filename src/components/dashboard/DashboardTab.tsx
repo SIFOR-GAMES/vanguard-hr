@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Users, 
-  HardHat, 
-  FileWarning, 
-  CalendarClock, 
-  Banknote, 
+  ShieldCheck, 
   CreditCard, 
-  PlusCircle, 
-  ArrowUpRight, 
-  AlertTriangle, 
-  CheckCircle, 
+  UserPlus, 
+  Search, 
+  ArrowRight, 
+  CheckCircle2, 
+  AlertCircle, 
+  Clock, 
+  Banknote, 
+  FileText, 
+  Calendar,
   ChevronRight,
-  TrendingUp,
-  Clock
+  Sparkles,
+  HardHat
 } from 'lucide-react';
 import { Employee, EmployeeDocument, SalaryPayment, AuditLog } from '../../types/hr';
 import { getDocumentExpiryStatus } from '../../services/storage';
@@ -42,12 +44,16 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
   onSelectEmployee,
   onOpenAddEmployee,
 }) => {
-  // Calculations
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeBottomTab, setActiveBottomTab] = useState<'activity' | 'payroll'>('activity');
+
+  // Key metrics calculation
   const totalEmployees = employees.length;
   const totalLabourers = employees.filter(e => e.employment.category === 'Labourer').length;
+  const totalStaff = totalEmployees - totalLabourers;
   const onLeaveCount = employees.filter(e => e.employment.status === 'On Leave').length;
   
-  // Document compliance
+  // Document compliance analysis
   const urgentDocs = documents
     .map(doc => ({
       ...doc,
@@ -56,7 +62,11 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
     .filter(d => d.expiryStatus.status === 'expired' || d.expiryStatus.daysLeft <= 30)
     .sort((a, b) => a.expiryStatus.daysLeft - b.expiryStatus.daysLeft);
 
-  // Payroll statistics for latest month
+  const complianceRate = documents.length > 0
+    ? Math.round(((documents.length - urgentDocs.length) / documents.length) * 100)
+    : 100;
+
+  // Monthly payroll breakdown
   const currentMonthPayments = payments.filter(p => p.period.includes('September 2026') || p.period.includes('2026-09'));
   const totalPayrollAmount = currentMonthPayments.reduce((sum, p) => sum + p.netAmount, 0);
   const cashPayments = currentMonthPayments.filter(p => p.paymentMethod === 'Cash');
@@ -64,432 +74,446 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
   const cashTotal = cashPayments.reduce((sum, p) => sum + p.netAmount, 0);
   const bankTotal = bankPayments.reduce((sum, p) => sum + p.netAmount, 0);
 
-  const cashPercent = totalPayrollAmount > 0 ? Math.round((cashTotal / totalPayrollAmount) * 100) : 0;
-  const bankPercent = totalPayrollAmount > 0 ? 100 - cashPercent : 0;
+  // Live search suggestions (u.ae style instant service search)
+  const searchResults = searchQuery.trim() === '' ? [] : employees.filter(e => {
+    const q = searchQuery.toLowerCase();
+    return (
+      e.firstName.toLowerCase().includes(q) ||
+      e.lastName.toLowerCase().includes(q) ||
+      e.id.toLowerCase().includes(q) ||
+      e.employment.jobTitle.toLowerCase().includes(q) ||
+      e.employment.trade.toLowerCase().includes(q) ||
+      e.employment.laborCardNumber.toLowerCase().includes(q) ||
+      e.employment.nationalIdNumber.toLowerCase().includes(q)
+    );
+  }).slice(0, 4);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto pb-10">
       
-      {/* Top Royal Letterhead Hero Banner */}
-      <div className="bg-[#FAF7F2] dark:bg-[#1A1715] rounded-2xl p-6 sm:p-8 border border-[#E7DEC8] dark:border-[#383129] shadow-xs relative overflow-hidden">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-start sm:items-center gap-4 sm:gap-5">
-            <div className="p-2 sm:p-2.5 rounded-2xl bg-white dark:bg-[#231F1C] border border-[#E7DEC8] dark:border-[#3D362D] shadow-xs shrink-0">
-              <RoyalEmblem size="lg" />
-            </div>
-            <div>
-              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#F3EBD9] dark:bg-[#2C2417] text-[#846429] dark:text-[#E2C687] text-[10px] sm:text-xs font-bold mb-1.5 uppercase tracking-wider border border-[#E7DEC8] dark:border-[#4A3D27]">
-                <span className="w-2 h-2 rounded-full bg-[#BA9547] animate-pulse" />
-                Office of His Highness
-              </div>
-              <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
-                Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
-              </h1>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-stone-600 dark:text-stone-400">
-                <span className="font-arabic text-sm text-[#846429] dark:text-[#D4AF37]" dir="rtl">
-                  مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
-                </span>
-                <span className="text-stone-300 dark:text-stone-700">•</span>
-                <span className="font-medium text-stone-600 dark:text-stone-300">
-                  Human Resources & Labour Management System
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <button
-              onClick={onOpenAddEmployee}
-              className="px-4 py-2.5 rounded-xl bg-[#BA9547] hover:bg-[#A17D34] active:scale-95 text-white text-xs sm:text-sm font-bold shadow-sm shadow-[#BA9547]/20 flex items-center gap-2 transition"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>Add Personnel</span>
-            </button>
-            <button
-              onClick={onNavigateToEmployees}
-              className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#231F1C] hover:bg-[#F8F5EE] dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 border border-[#E7DEC8] dark:border-[#383129] text-xs sm:text-sm font-semibold flex items-center gap-2 transition"
-            >
-              <span>Personnel Directory</span>
-              <ArrowUpRight className="w-4 h-4 text-[#A17D34]" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Simplified KPI Cards Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Personnel */}
-        <div 
-          onClick={onNavigateToEmployees}
-          className="p-5 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs hover:border-[#BA9547] transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-              Total Personnel
-            </span>
-            <div className="p-2 rounded-xl bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] group-hover:scale-105 transition border border-[#ECDDBA] dark:border-[#5A451F]">
-              <Users className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-stone-900 dark:text-white font-serif">
-              {totalEmployees}
-            </span>
-            <span className="text-xs font-semibold text-stone-500 dark:text-stone-400">
-              staff & workforce
-            </span>
-          </div>
-          <div className="mt-2 text-xs text-[#846429] dark:text-[#E2C687] font-semibold flex items-center gap-1">
-            <span>View all digital files</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </div>
-        </div>
-
-        {/* Labourers on duty */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-              Site Labourers
-            </span>
-            <div className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900/60">
-              <HardHat className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-stone-900 dark:text-white font-serif">
-              {totalLabourers}
-            </span>
-            <span className="text-xs font-semibold text-amber-700 dark:text-amber-400">
-              Active Trade Staff
-            </span>
-          </div>
-          <p className="mt-2 text-xs text-stone-400">
-            Electricians, Masons, Scaffolding, HVAC
-          </p>
-        </div>
-
-        {/* Urgent Documents Alert */}
-        <div 
-          onClick={onNavigateToCompliance}
-          className="p-5 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs hover:border-[#BA9547] transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-              Document Expiry Alerts
-            </span>
-            <div className={`p-2 rounded-xl transition group-hover:scale-105 border ${
-              urgentDocs.length > 0 
-                ? 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-900'
-                : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-            }`}>
-              <FileWarning className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-rose-700 dark:text-rose-400 font-serif">
-              {urgentDocs.length}
-            </span>
-            <span className="text-xs font-semibold text-stone-500">
-              expiring / expired
-            </span>
-          </div>
-          <div className="mt-2 text-xs text-rose-700 dark:text-rose-400 font-semibold flex items-center gap-1">
-            <span>Review compliance status</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </div>
-        </div>
-
-        {/* On Leave Today */}
-        <div className="p-5 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-              Personnel On Leave
-            </span>
-            <div className="p-2 rounded-xl bg-[#F5F1E8] dark:bg-[#25201A] text-[#846429] dark:text-[#E2C687] border border-[#E7DEC8] dark:border-[#3D362D]">
-              <CalendarClock className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-stone-900 dark:text-white font-serif">
-              {onLeaveCount}
-            </span>
-            <span className="text-xs font-semibold text-[#846429] dark:text-[#E2C687]">
-              Authorized Leaves
-            </span>
-          </div>
-          <p className="mt-2 text-xs text-stone-400">
-            Annual, sick & official leaves
-          </p>
-        </div>
-      </div>
-
-      {/* Middle Grid: Payroll Distribution (Cash vs Bank) & Document Expiry Radar */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* 1. HERO & SEARCH SECTION (u.ae Official Portal Vibe) */}
+      <div className="relative rounded-3xl bg-gradient-to-b from-[#FAF7F2] to-[#F5EFEB] dark:from-[#1E1B18] dark:to-[#171412] p-8 sm:p-12 border border-[#E7DEC8] dark:border-[#3A332B] shadow-xs text-center">
         
-        {/* Left 2 Cols: Monthly Salary Disbursement & Payment Method Breakdown */}
-        <div className="lg:col-span-2 bg-white dark:bg-[#1C1917] rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#383129] shadow-xs space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E7DEC8] dark:border-[#2E2822] pb-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#846429] dark:text-[#E2C687]" />
-                <h3 className="text-base font-bold text-stone-900 dark:text-white font-serif">
-                  Monthly Salary Payout & Disbursement
-                </h3>
-              </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                September 2026 Disbursed Payroll: Cash vs Bank Transfer (WPS)
-              </p>
-            </div>
-
-            <button
-              onClick={onNavigateToPayroll}
-              className="text-xs font-bold text-[#846429] dark:text-[#E2C687] hover:underline flex items-center gap-1 self-start sm:self-auto"
-            >
-              <span>Full Payroll Ledger</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Amount Summary Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="p-4 rounded-xl bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129]">
-              <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
-                Total Disbursed
-              </span>
-              <p className="text-xl font-extrabold text-stone-900 dark:text-white mt-1 font-serif">
-                AED {totalPayrollAmount.toLocaleString()}
-              </p>
-              <p className="text-[11px] text-stone-500 mt-0.5">
-                {currentMonthPayments.length} payments recorded
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-[#FBF8F0] dark:bg-[#2A2318] border border-[#ECDDBA] dark:border-[#5A451F]">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold text-[#846429] dark:text-[#E2C687] uppercase tracking-wider flex items-center gap-1.5">
-                  <CreditCard className="w-3.5 h-3.5" />
-                  Bank Transfer (WPS)
-                </span>
-                <span className="text-xs font-extrabold text-[#846429] dark:text-[#E2C687]">
-                  {bankPercent}%
-                </span>
-              </div>
-              <p className="text-xl font-extrabold text-stone-900 dark:text-stone-100 mt-1 font-serif">
-                AED {bankTotal.toLocaleString()}
-              </p>
-              <p className="text-[11px] text-[#A17D34] dark:text-[#DFC792] mt-0.5">
-                {bankPayments.length} transfers to corporate IBANs
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Banknote className="w-3.5 h-3.5" />
-                  Cash Payment
-                </span>
-                <span className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300">
-                  {cashPercent}%
-                </span>
-              </div>
-              <p className="text-xl font-extrabold text-emerald-950 dark:text-emerald-100 mt-1 font-serif">
-                AED {cashTotal.toLocaleString()}
-              </p>
-              <p className="text-[11px] text-emerald-700 dark:text-emerald-300 mt-0.5">
-                {cashPayments.length} cash vouchers with receipts
-              </p>
-            </div>
-          </div>
-
-          {/* Visual Percentage Distribution Bar */}
-          <div className="space-y-1.5 pt-2">
-            <div className="flex justify-between text-xs font-semibold text-stone-600 dark:text-stone-400">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#BA9547]" />
-                Bank Transfer ({bankPercent}%)
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-600" />
-                Cash Payment ({cashPercent}%)
-              </span>
-            </div>
-            <div className="h-2.5 w-full bg-[#F5F1E8] dark:bg-stone-800 rounded-full overflow-hidden flex border border-[#E7DEC8] dark:border-stone-700">
-              <div 
-                style={{ width: `${bankPercent}%` }} 
-                className="bg-[#BA9547] h-full transition-all duration-500" 
-                title={`Bank Transfers: ${bankPercent}%`}
-              />
-              <div 
-                style={{ width: `${cashPercent}%` }} 
-                className="bg-emerald-600 h-full transition-all duration-500" 
-                title={`Cash: ${cashPercent}%`}
-              />
-            </div>
-          </div>
-
-          {/* Recent Payout Table */}
-          <div className="overflow-x-auto pt-2">
-            <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-2">
-              Latest Processed Payment Transactions
-            </p>
-            <table className="w-full text-xs text-left">
-              <thead>
-                <tr className="text-stone-400 border-b border-[#E7DEC8] dark:border-[#2E2822]">
-                  <th className="pb-2 font-semibold">Personnel</th>
-                  <th className="pb-2 font-semibold">Period</th>
-                  <th className="pb-2 font-semibold">Payment Date</th>
-                  <th className="pb-2 font-semibold">Method</th>
-                  <th className="pb-2 font-semibold text-right">Net Amount</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E7DEC8] dark:divide-[#2E2822]">
-                {payments.slice(0, 4).map((pay) => {
-                  const emp = employees.find(e => e.id === pay.employeeId);
-                  return (
-                    <tr 
-                      key={pay.id}
-                      onClick={() => emp && onSelectEmployee(emp)}
-                      className="hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] cursor-pointer transition"
-                    >
-                      <td className="py-2.5 font-bold text-stone-900 dark:text-stone-100">
-                        {emp ? `${emp.firstName} ${emp.lastName}` : pay.employeeId}
-                        <span className="block text-[10px] font-normal text-stone-400">{pay.employeeId}</span>
-                      </td>
-                      <td className="py-2.5 text-stone-600 dark:text-stone-400">{pay.period}</td>
-                      <td className="py-2.5 text-stone-600 dark:text-stone-400 font-mono">{pay.paymentDate}</td>
-                      <td className="py-2.5">
-                        <Badge variant={pay.paymentMethod === 'Cash' ? 'cash' : 'bank'} size="sm">
-                          {pay.paymentMethod}
-                        </Badge>
-                      </td>
-                      <td className="py-2.5 text-right font-bold text-stone-900 dark:text-white font-mono">
-                        AED {pay.netAmount.toLocaleString()}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Right 1 Col: Document Expiry Radar & Actions */}
-        <div className="bg-white dark:bg-[#1C1917] rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#383129] shadow-xs flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between border-b border-[#E7DEC8] dark:border-[#2E2822] pb-4 mb-4">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-rose-700" />
-                <h3 className="text-base font-bold text-stone-900 dark:text-white font-serif">
-                  Document Expiry Radar
-                </h3>
-              </div>
-              <span className="text-xs font-extrabold text-rose-800 bg-rose-50 dark:bg-rose-950 px-2.5 py-0.5 rounded-full border border-rose-200 dark:border-rose-900">
-                {urgentDocs.length} Active
-              </span>
-            </div>
-
-            <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
-              Documents requiring renewal within 30 days or overdue for UAE MOHRE compliance.
-            </p>
-
-            <div className="space-y-3">
-              {urgentDocs.slice(0, 4).map((doc) => {
-                const emp = employees.find(e => e.id === doc.employeeId);
-                const isOverdue = doc.expiryStatus.status === 'expired';
-
-                return (
-                  <div
-                    key={doc.id}
-                    onClick={() => emp && onSelectEmployee(emp)}
-                    className="p-3 rounded-xl border border-[#E7DEC8] dark:border-[#383129] hover:border-[#BA9547] dark:hover:border-[#BA9547] bg-[#FAF7F2]/50 dark:bg-[#25201C]/50 hover:bg-[#FAF7F2] cursor-pointer transition group"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0">
-                        <p className="text-xs font-bold text-stone-900 dark:text-white truncate group-hover:text-[#846429] dark:group-hover:text-[#E2C687] transition">
-                          {doc.title}
-                        </p>
-                        <p className="text-[11px] text-stone-500 mt-0.5 truncate">
-                          {emp ? `${emp.firstName} ${emp.lastName} (${emp.id})` : doc.employeeId}
-                        </p>
-                      </div>
-
-                      <Badge variant={isOverdue ? 'danger' : 'warning'} size="sm">
-                        {doc.expiryStatus.label}
-                      </Badge>
-                    </div>
-
-                    <div className="mt-2 flex items-center justify-between text-[11px] text-stone-400 font-mono">
-                      <span>Exp: {doc.expiryDate}</span>
-                      <span className="text-[#846429] dark:text-[#E2C687] font-sans font-semibold group-hover:underline">
-                        Open File →
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {urgentDocs.length === 0 && (
-                <div className="p-6 text-center text-stone-400">
-                  <CheckCircle className="w-8 h-8 mx-auto text-emerald-600 mb-2" />
-                  <p className="text-xs font-semibold">All documents are up-to-date!</p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <button
-            onClick={onNavigateToCompliance}
-            className="w-full mt-4 py-2.5 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#F2ECE1] dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold transition flex items-center justify-center gap-1.5 border border-[#E7DEC8] dark:border-stone-700"
-          >
-            <span>Open Compliance Manager</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-
-      </div>
-
-      {/* Bottom Section: Recent Audit Log Activity */}
-      <div className="bg-white dark:bg-[#1C1917] rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#383129] shadow-xs">
-        <div className="flex items-center justify-between border-b border-[#E7DEC8] dark:border-[#2E2822] pb-4 mb-4">
-          <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-[#846429] dark:text-[#E2C687]" />
-            <h3 className="text-base font-bold text-stone-900 dark:text-white font-serif">
-              Recent Official Activity & Audit Trail
-            </h3>
-          </div>
-          <span className="text-xs text-stone-400">
-            Real-time security log
+        {/* Subtle decorative crest badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-[#25211D] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs mb-4">
+          <RoyalEmblem size="sm" />
+          <span className="font-arabic text-sm text-[#846429] dark:text-[#D4AF37]" dir="rtl">
+            مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
           </span>
         </div>
 
-        <div className="space-y-3">
-          {auditLogs.slice(0, 5).map((log) => (
-            <div
-              key={log.id}
-              className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] transition text-xs"
-            >
-              <div className="w-7 h-7 rounded-lg bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] border border-[#ECDDBA] dark:border-[#5A451F] flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 font-mono">
-                {log.action.slice(0, 3)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-bold text-stone-900 dark:text-stone-100">
-                    {log.userName} ({log.userRole})
-                  </span>
-                  <span className="text-[10px] text-stone-400 font-mono">
-                    {new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </span>
-                </div>
-                <p className="text-stone-600 dark:text-stone-400 mt-0.5">
-                  {log.details}
-                </p>
-              </div>
+        <h1 className="font-serif text-2xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100 max-w-3xl mx-auto leading-tight">
+          Office of His Highness Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
+        </h1>
+        <p className="mt-2 text-sm sm:text-base text-stone-600 dark:text-stone-400 font-medium max-w-xl mx-auto">
+          Official Human Resources & Workforce Management Portal
+        </p>
+
+        {/* Central Search Box (u.ae signature experience) */}
+        <div className="mt-8 max-w-2xl mx-auto relative">
+          <div className="relative flex items-center shadow-sm rounded-2xl bg-white dark:bg-[#231F1C] border border-[#E7DEC8] dark:border-[#3D352E] focus-within:border-[#BA9547] focus-within:ring-2 focus-within:ring-[#BA9547]/20 transition-all">
+            <div className="pl-4 pr-2 text-[#BA9547]">
+              <Search className="w-5 h-5" />
             </div>
-          ))}
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search personnel by name, Emirates ID, trade, or designation..."
+              className="w-full py-4 pr-4 bg-transparent text-sm text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-hidden font-medium"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="mr-3 px-2 py-1 text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+
+          {/* Instant Search Results Dropdown */}
+          {searchResults.length > 0 && (
+            <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#231F1C] rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xl z-30 overflow-hidden text-left divide-y divide-[#E7DEC8]/50 dark:divide-[#3D352E]">
+              <div className="px-4 py-2 bg-[#FAF7F2] dark:bg-[#1E1B18] text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+                Matching Personnel Records ({searchResults.length})
+              </div>
+              {searchResults.map((emp) => (
+                <button
+                  key={emp.id}
+                  onClick={() => {
+                    onSelectEmployee(emp);
+                    setSearchQuery('');
+                  }}
+                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-[#FAF7F2] dark:hover:bg-[#2A2318] transition group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#FAF7F2] dark:bg-[#2A2318] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center font-serif font-bold text-sm text-[#846429] dark:text-[#D4AF37]">
+                      {emp.firstName[0]}{emp.lastName[0]}
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-stone-900 dark:text-white group-hover:text-[#BA9547] transition">
+                        {emp.firstName} {emp.lastName}
+                      </p>
+                      <p className="text-xs text-stone-500">
+                        {emp.employment.jobTitle} • {emp.employment.trade} • ID: {emp.id}
+                      </p>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-stone-400 group-hover:text-[#BA9547] transition" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Quick Filter Shortcuts */}
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs">
+            <span className="text-stone-400 font-medium">Quick filters:</span>
+            <button
+              onClick={onNavigateToEmployees}
+              className="px-3 py-1 rounded-full bg-white dark:bg-[#25211D] border border-[#E7DEC8] dark:border-[#3D352E] text-stone-700 dark:text-stone-300 hover:border-[#BA9547] hover:text-[#BA9547] transition"
+            >
+              All Personnel ({totalEmployees})
+            </button>
+            <button
+              onClick={onNavigateToEmployees}
+              className="px-3 py-1 rounded-full bg-white dark:bg-[#25211D] border border-[#E7DEC8] dark:border-[#3D352E] text-stone-700 dark:text-stone-300 hover:border-[#BA9547] hover:text-[#BA9547] transition"
+            >
+              Labourers ({totalLabourers})
+            </button>
+            <button
+              onClick={onNavigateToCompliance}
+              className="px-3 py-1 rounded-full bg-white dark:bg-[#25211D] border border-[#E7DEC8] dark:border-[#3D352E] text-stone-700 dark:text-stone-300 hover:border-[#BA9547] hover:text-[#BA9547] transition flex items-center gap-1"
+            >
+              <span>Expiring Docs</span>
+              {urgentDocs.length > 0 && (
+                <span className="w-4 h-4 rounded-full bg-amber-500 text-white text-[10px] flex items-center justify-center font-bold">
+                  {urgentDocs.length}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
+
+      </div>
+
+      {/* 2. THREE HIGH-LEVEL STATUS PILLARS (Clean, glanceable, zero noise) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        {/* Workforce Overview */}
+        <div 
+          onClick={onNavigateToEmployees}
+          className="p-5 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] transition cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            <span>Official Workforce</span>
+            <Users className="w-4 h-4 text-[#BA9547]" />
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-serif font-black text-stone-900 dark:text-white">
+              {totalEmployees}
+            </span>
+            <span className="text-xs text-stone-500">Active Members</span>
+          </div>
+          <div className="mt-2 text-xs text-stone-500 flex items-center gap-2">
+            <span>{totalStaff} Administrative</span>
+            <span>•</span>
+            <span>{totalLabourers} Technical Labourers</span>
+          </div>
+        </div>
+
+        {/* Compliance Health */}
+        <div 
+          onClick={onNavigateToCompliance}
+          className="p-5 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] transition cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            <span>Document Compliance</span>
+            <ShieldCheck className="w-4 h-4 text-[#BA9547]" />
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-serif font-black text-stone-900 dark:text-white">
+              {complianceRate}%
+            </span>
+            <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${
+              urgentDocs.length === 0 
+                ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'
+                : 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300'
+            }`}>
+              {urgentDocs.length === 0 ? '100% In Good Standing' : `${urgentDocs.length} Action Needed`}
+            </span>
+          </div>
+          <p className="mt-2 text-xs text-stone-500">
+            Passports, visas, and Emirates IDs monitored
+          </p>
+        </div>
+
+        {/* Monthly Payroll */}
+        <div 
+          onClick={onNavigateToPayroll}
+          className="p-5 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] transition cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            <span>Monthly Disbursement</span>
+            <CreditCard className="w-4 h-4 text-[#BA9547]" />
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-serif font-black text-stone-900 dark:text-white font-mono">
+              AED {totalPayrollAmount.toLocaleString()}
+            </span>
+          </div>
+          <div className="mt-2 text-xs text-stone-500 flex items-center gap-2">
+            <span>WPS: AED {bankTotal.toLocaleString()}</span>
+            <span>•</span>
+            <span>Cash: AED {cashTotal.toLocaleString()}</span>
+          </div>
+        </div>
+
+      </div>
+
+      {/* 3. KEY SERVICES & QUICK ACTIONS (u.ae Signature Service Directory Tiles) */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base sm:text-lg font-bold text-stone-900 dark:text-white font-serif">
+              Key Services & Operations
+            </h2>
+            <p className="text-xs text-stone-500">
+              Direct access to essential human resource tasks and registry management
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          {/* Service 1: Personnel Directory */}
+          <div 
+            onClick={onNavigateToEmployees}
+            className="p-6 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                <Users className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-sm text-stone-900 dark:text-white group-hover:text-[#BA9547] transition">
+                Personnel Directory
+              </h3>
+              <p className="text-xs text-stone-500 mt-1 leading-relaxed">
+                Browse digital files, trade assignments, emergency contacts, and job contracts.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-[#E7DEC8]/60 dark:border-[#3D352E] flex items-center justify-between text-xs font-bold text-[#846429] dark:text-[#D4AF37]">
+              <span>Open Directory</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Service 2: Document Compliance */}
+          <div 
+            onClick={onNavigateToCompliance}
+            className="p-6 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-sm text-stone-900 dark:text-white group-hover:text-[#BA9547] transition">
+                Compliance Radar
+              </h3>
+              <p className="text-xs text-stone-500 mt-1 leading-relaxed">
+                Monitor 30/60/90-day expiry schedules and export official CSV audit reports.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-[#E7DEC8]/60 dark:border-[#3D352E] flex items-center justify-between text-xs font-bold text-[#846429] dark:text-[#D4AF37]">
+              <span>View Expirations</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Service 3: Payroll Center */}
+          <div 
+            onClick={onNavigateToPayroll}
+            className="p-6 rounded-2xl bg-white dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs hover:border-[#BA9547] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                <CreditCard className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-sm text-stone-900 dark:text-white group-hover:text-[#BA9547] transition">
+                Payroll & Wages
+              </h3>
+              <p className="text-xs text-stone-500 mt-1 leading-relaxed">
+                Disburse salaries, generate official letterhead PDF payslips, and manage WPS records.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-[#E7DEC8]/60 dark:border-[#3D352E] flex items-center justify-between text-xs font-bold text-[#846429] dark:text-[#D4AF37]">
+              <span>Manage Payroll</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Service 4: Register Personnel */}
+          <div 
+            onClick={onOpenAddEmployee}
+            className="p-6 rounded-2xl bg-gradient-to-br from-[#BA9547] to-[#846429] text-white shadow-xs hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-4 group-hover:scale-105 transition backdrop-blur-xs">
+                <UserPlus className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-sm text-white">
+                Register Personnel
+              </h3>
+              <p className="text-xs text-white/80 mt-1 leading-relaxed">
+                Add a new staff officer or specialized site technician to the official Office roster.
+              </p>
+            </div>
+            <div className="mt-5 pt-3 border-t border-white/20 flex items-center justify-between text-xs font-bold text-white">
+              <span>Start Registration</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 4. IMMEDIATE ATTENTION BANNER (Only what requires user action) */}
+      {urgentDocs.length > 0 ? (
+        <div className="p-5 rounded-2xl bg-[#FFFBF0] dark:bg-[#25201A] border border-[#EADBB6] dark:border-[#4D3F27] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3.5">
+            <div className="p-2 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400 shrink-0 mt-0.5">
+              <AlertCircle className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-stone-900 dark:text-white">
+                {urgentDocs.length} Document(s) Require Renewal Attention
+              </h4>
+              <p className="text-xs text-stone-600 dark:text-stone-400 mt-0.5">
+                Earliest: <strong className="text-amber-800 dark:text-amber-300">{urgentDocs[0]?.title}</strong> for {employees.find(e => e.id === urgentDocs[0]?.employeeId)?.firstName} {employees.find(e => e.id === urgentDocs[0]?.employeeId)?.lastName} (Expires: {urgentDocs[0]?.expiryDate})
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onNavigateToCompliance}
+            className="px-4 py-2 rounded-xl bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-1.5 shrink-0"
+          >
+            <span>Review & Renew</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      ) : (
+        <div className="p-4 rounded-2xl bg-[#F4F9F5] dark:bg-[#1A261D] border border-[#CDE5D4] dark:border-[#284530] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-200">
+              Official Registry in Good Standing — All personnel credentials, visas, and Emirates IDs are active and valid.
+            </p>
+          </div>
+          <button
+            onClick={onNavigateToCompliance}
+            className="text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:underline shrink-0"
+          >
+            Compliance Status
+          </button>
+        </div>
+      )}
+
+      {/* 5. PROGRESSIVE DETAIL VIEWER (One clean tabbed view instead of overwhelming stacked tables) */}
+      <div className="bg-white dark:bg-[#1E1B18] rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs overflow-hidden">
+        
+        {/* Clean Tab Header */}
+        <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-[#E7DEC8]/60 dark:border-[#3D352E]">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveBottomTab('activity')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+                activeBottomTab === 'activity'
+                  ? 'bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E]'
+                  : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+              }`}
+            >
+              <Clock className="w-3.5 h-3.5" />
+              <span>Recent Activity Trail</span>
+            </button>
+            <button
+              onClick={() => setActiveBottomTab('payroll')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+                activeBottomTab === 'payroll'
+                  ? 'bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E]'
+                  : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+              }`}
+            >
+              <Banknote className="w-3.5 h-3.5" />
+              <span>Recent Wage Disbursements</span>
+            </button>
+          </div>
+
+          <span className="text-[11px] text-stone-400 font-medium hidden sm:inline">
+            {activeBottomTab === 'activity' ? 'Audit timeline' : 'September 2026 payout records'}
+          </span>
+        </div>
+
+        {/* Tab 1: Audit Activity */}
+        {activeBottomTab === 'activity' && (
+          <div className="p-6 divide-y divide-[#E7DEC8]/40 dark:divide-[#3D352E]/40">
+            {auditLogs.slice(0, 4).map((log) => (
+              <div key={log.id} className="py-3 first:pt-0 last:pb-0 flex items-start justify-between gap-4 text-xs">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center font-mono font-bold text-[10px] shrink-0 mt-0.5">
+                    {log.action.slice(0, 3)}
+                  </div>
+                  <div>
+                    <p className="font-bold text-stone-800 dark:text-stone-200">
+                      {log.userName} <span className="font-normal text-stone-400">({log.userRole})</span>
+                    </p>
+                    <p className="text-stone-600 dark:text-stone-400 mt-0.5">{log.details}</p>
+                  </div>
+                </div>
+                <span className="text-[11px] text-stone-400 font-mono shrink-0">
+                  {new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 2: Recent Disbursements */}
+        {activeBottomTab === 'payroll' && (
+          <div className="p-6 divide-y divide-[#E7DEC8]/40 dark:divide-[#3D352E]/40">
+            {payments.slice(0, 4).map((pay) => {
+              const emp = employees.find(e => e.id === pay.employeeId);
+              return (
+                <div key={pay.id} className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-4 text-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8] dark:border-[#3D352E] flex items-center justify-center font-bold shrink-0">
+                      <CreditCard className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-stone-900 dark:text-white">
+                        {emp ? `${emp.firstName} ${emp.lastName}` : pay.employeeId}
+                      </p>
+                      <p className="text-[11px] text-stone-400">
+                        {pay.period} • {pay.paymentDate} • Ref: {pay.transactionReference}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <Badge variant={pay.paymentMethod === 'Cash' ? 'cash' : 'bank'} size="sm">
+                      {pay.paymentMethod}
+                    </Badge>
+                    <span className="font-mono font-bold text-stone-900 dark:text-white text-sm">
+                      AED {pay.netAmount.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
       </div>
 
     </div>
   );
 };
-
