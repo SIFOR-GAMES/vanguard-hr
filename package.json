@@ -1,7 +1,7 @@
 {
-  "name": "vanguard-hr",
+  "name": "royal-office-hr",
   "version": "1.0.0",
-  "description": "Vanguard HR - Employee & Labourer Management System",
+  "description": "HR system for Office of His Highness Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan",
   "type": "module",
   "scripts": {
     "dev": "vite",

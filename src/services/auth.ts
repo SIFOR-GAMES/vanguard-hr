@@ -5,6 +5,23 @@ import { storage } from './storage';
 const AUTH_KEY = 'vanguard_hr_session_user';
 
 export const CREDENTIALS: Record<string, { password: string; user: User }> = {
+  'admin@officehh.ae': {
+    password: 'admin123',
+    user: INITIAL_USERS[0],
+  },
+  'hr@officehh.ae': {
+    password: 'hr123',
+    user: INITIAL_USERS[1],
+  },
+  'payroll@officehh.ae': {
+    password: 'payroll123',
+    user: INITIAL_USERS[2],
+  },
+  'auditor@officehh.ae': {
+    password: 'auditor123',
+    user: INITIAL_USERS[3],
+  },
+  // Backward compatibility
   'admin@vanguardhr.com': {
     password: 'admin123',
     user: INITIAL_USERS[0],

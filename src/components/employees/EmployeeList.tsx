@@ -149,47 +149,47 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Employee & Labourer Directory
+            <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
+              Personnel & Staff Directory
             </h1>
-            <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
-              {filteredEmployees.length} of {employees.length}
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] border border-[#ECDDBA] dark:border-[#5A451F]">
+              {filteredEmployees.length} of {employees.length} Records
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Individual digital dossier records, document compliance, and compensation files.
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+            Individual digital dossiers, document compliance verification, and compensation ledgers.
           </p>
         </div>
 
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenAddModal}
-            className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/25 flex items-center gap-2 transition"
+            className="px-4 py-2.5 rounded-xl bg-[#BA9547] hover:bg-[#A17D34] active:scale-95 text-white text-xs sm:text-sm font-bold shadow-xs flex items-center gap-2 transition"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Add New Employee / Labourer</span>
+            <span>Add New Personnel</span>
           </button>
         </div>
       </div>
 
       {/* Control Bar: Search, View Mode, Filters Button */}
-      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+      <div className="bg-white dark:bg-[#1C1917] p-4 rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs space-y-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           
           {/* Search box */}
           <div className="relative w-full sm:max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
             <input
               type="text"
               placeholder="Search by name, ID, trade, mobile, passport..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white"
+              className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#BA9547] text-stone-900 dark:text-white"
             />
             {searchQuery && (
               <button
                 onClick={() => onSearchChange('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -202,25 +202,25 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition ${
                 showFilters || hasActiveFilters
-                  ? 'bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800'
-                  : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
+                  ? 'bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] border-[#ECDDBA] dark:border-[#5A451F]'
+                  : 'bg-[#FAF7F2] dark:bg-[#24201C] text-stone-600 dark:text-stone-300 border-[#E7DEC8] dark:border-[#383129]'
               }`}
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>Filters</span>
               {hasActiveFilters && (
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#BA9547]" />
               )}
             </button>
 
             {/* View Mode Buttons */}
-            <div className="flex items-center p-1 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div className="flex items-center p-1 bg-[#FAF7F2] dark:bg-[#24201C] rounded-xl border border-[#E7DEC8] dark:border-[#383129]">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-lg transition ${
                   viewMode === 'grid'
-                    ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs'
-                    : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                    ? 'bg-white dark:bg-stone-700 text-[#846429] dark:text-[#E2C687] shadow-xs'
+                    : 'text-stone-400 hover:text-stone-600 dark:hover:text-stone-200'
                 }`}
                 title="Grid Card View"
               >
@@ -230,10 +230,10 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                 onClick={() => setViewMode('table')}
                 className={`p-1.5 rounded-lg transition ${
                   viewMode === 'table'
-                    ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs'
-                    : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                    ? 'bg-white dark:bg-stone-700 text-[#846429] dark:text-[#E2C687] shadow-xs'
+                    : 'text-stone-400 hover:text-stone-600 dark:hover:text-stone-200'
                 }`}
-                title="Dense Table View"
+                title="Table View"
               >
                 <TableIcon className="w-4 h-4" />
               </button>
@@ -243,16 +243,16 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
         {/* Collapsible Filter Bar */}
         {showFilters && (
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
+          <div className="pt-3 border-t border-[#E7DEC8] dark:border-[#2E2822] grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
             {/* Category */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1">
                 Category
               </label>
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                className="w-full p-2 rounded-lg bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200"
               >
                 <option value="ALL">All Categories</option>
                 <option value="Labourer">Labourer</option>
@@ -263,13 +263,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
             {/* Trade */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1">
                 Trade / Specialty
               </label>
               <select
                 value={tradeFilter}
                 onChange={(e) => setTradeFilter(e.target.value)}
-                className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                className="w-full p-2 rounded-lg bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200"
               >
                 <option value="ALL">All Trades</option>
                 {uniqueTrades.map(t => (
@@ -280,13 +280,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
             {/* Status */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1">
                 Duty Status
               </label>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                className="w-full p-2 rounded-lg bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200"
               >
                 <option value="ALL">All Statuses</option>
                 <option value="Active">Active</option>
@@ -297,13 +297,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
             {/* Document Compliance */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1">
                 Document Status
               </label>
               <select
                 value={complianceFilter}
                 onChange={(e) => setComplianceFilter(e.target.value)}
-                className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                className="w-full p-2 rounded-lg bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200"
               >
                 <option value="ALL">All Documents</option>
                 <option value="EXPIRED">Has Expired Docs</option>
@@ -314,13 +314,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
             {/* Payment Method */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1">
                 Salary Method
               </label>
               <select
                 value={paymentFilter}
                 onChange={(e) => setPaymentFilter(e.target.value)}
-                className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                className="w-full p-2 rounded-lg bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200"
               >
                 <option value="ALL">All Methods</option>
                 <option value="Cash">Cash Payment</option>
@@ -332,7 +332,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               <div className="col-span-2 sm:col-span-5 flex justify-end">
                 <button
                   onClick={resetFilters}
-                  className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                  className="text-xs font-bold text-rose-700 dark:text-rose-400 hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -344,17 +344,17 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
       {/* Main Content: Grid vs Table View */}
       {filteredEmployees.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-800">
-          <Filter className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">
-            No employee records found
+        <div className="bg-white dark:bg-[#1C1917] rounded-2xl p-12 text-center border border-[#E7DEC8] dark:border-[#383129]">
+          <Filter className="w-10 h-10 text-stone-300 dark:text-stone-600 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-stone-800 dark:text-stone-200 font-serif">
+            No personnel records found
           </h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-            Try adjusting your search terms or filter settings to view existing employees.
+          <p className="text-xs text-stone-500 mt-1 max-w-sm mx-auto">
+            Try adjusting your search terms or filter settings to view personnel files.
           </p>
           <button
             onClick={resetFilters}
-            className="mt-4 px-4 py-2 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 font-bold text-xs rounded-xl"
+            className="mt-4 px-4 py-2 bg-[#FBF8F0] text-[#846429] dark:bg-[#2A2318] dark:text-[#E2C687] border border-[#ECDDBA] dark:border-[#5A451F] font-bold text-xs rounded-xl"
           >
             Reset Filters
           </button>
@@ -370,7 +370,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               <div
                 key={emp.id}
                 onClick={() => onSelectEmployee(emp)}
-                className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-700 transition cursor-pointer group flex flex-col justify-between"
+                className="bg-white dark:bg-[#1C1917] rounded-2xl p-5 border border-[#E7DEC8] dark:border-[#383129] shadow-xs hover:border-[#BA9547] dark:hover:border-[#BA9547] transition cursor-pointer group flex flex-col justify-between"
               >
                 <div>
                   {/* Card Header */}
@@ -379,18 +379,18 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                       <img
                         src={emp.photoUrl || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80'}
                         alt={emp.firstName}
-                        className="w-12 h-12 rounded-xl object-cover ring-2 ring-slate-200 dark:ring-slate-700 group-hover:ring-indigo-400 transition"
+                        className="w-12 h-12 rounded-xl object-cover ring-1 ring-[#E7DEC8] dark:ring-stone-700 group-hover:ring-[#BA9547] transition"
                       />
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-extrabold text-sm text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                          <h3 className="font-bold text-sm text-stone-900 dark:text-white group-hover:text-[#846429] dark:group-hover:text-[#E2C687] transition font-serif">
                             {emp.firstName} {emp.lastName}
                           </h3>
                         </div>
-                        <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        <p className="text-xs font-semibold text-stone-600 dark:text-stone-300">
                           {emp.employment.jobTitle}
                         </p>
-                        <p className="text-[11px] text-slate-400 font-mono">
+                        <p className="text-[11px] text-stone-400 font-mono">
                           {emp.id} • {emp.nationality}
                         </p>
                       </div>
@@ -409,10 +409,10 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
 
                   {/* Badges bar */}
                   <div className="mt-3 flex flex-wrap gap-1.5 items-center">
-                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF7F2] dark:bg-[#25201C] text-stone-700 dark:text-stone-300 border border-[#E7DEC8] dark:border-[#383129]">
                       {emp.employment.trade}
                     </span>
-                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF7F2] dark:bg-[#25201C] text-stone-700 dark:text-stone-300 border border-[#E7DEC8] dark:border-[#383129]">
                       {emp.employment.department}
                     </span>
                     <Badge variant={isCash ? 'cash' : 'bank'} size="sm">
@@ -433,29 +433,29 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                   {/* Document Compliance Alert if any */}
                   {comp && (comp.hasExpired || comp.hasExpiring) && (
                     <div className="mt-3 p-2 rounded-xl bg-rose-50/70 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 flex items-center justify-between text-[11px]">
-                      <span className="flex items-center gap-1.5 text-rose-700 dark:text-rose-300 font-semibold">
-                        <FileWarning className="w-3.5 h-3.5 text-rose-600" />
+                      <span className="flex items-center gap-1.5 text-rose-800 dark:text-rose-300 font-semibold">
+                        <FileWarning className="w-3.5 h-3.5 text-rose-700" />
                         {comp.hasExpired ? 'Has Expired Documents' : `${comp.urgentCount} Doc(s) Expiring Soon`}
                       </span>
-                      <span className="font-bold text-rose-600">Urgent</span>
+                      <span className="font-bold text-rose-700">Urgent</span>
                     </div>
                   )}
 
                   {/* Quick Details */}
-                  <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-3 pt-3 border-t border-[#E7DEC8] dark:border-[#2E2822] space-y-1.5 text-xs text-stone-500 dark:text-stone-400">
                     <div className="flex items-center justify-between">
                       <span className="flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                        <MapPin className="w-3.5 h-3.5 text-stone-400" />
                         <span className="truncate max-w-[150px]">{emp.employment.workLocation}</span>
                       </span>
-                      <span className="font-mono text-slate-700 dark:text-slate-300 font-bold">
+                      <span className="font-mono text-stone-800 dark:text-stone-200 font-bold">
                         AED {emp.salaryStructure.basicSalary + emp.salaryStructure.housingAllowance + emp.salaryStructure.transportAllowance}/mo
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between text-[11px]">
                       <span className="flex items-center gap-1.5">
-                        <Phone className="w-3 h-3 text-slate-400" />
+                        <Phone className="w-3 h-3 text-stone-400" />
                         <span>{emp.contact.phone}</span>
                       </span>
                       <span>Labor: {emp.employment.laborCardNumber}</span>
@@ -464,8 +464,8 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                 </div>
 
                 {/* Footer Action */}
-                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
-                  <span>Open Digital File</span>
+                <div className="mt-4 pt-3 border-t border-[#E7DEC8] dark:border-[#2E2822] flex items-center justify-between text-xs font-bold text-[#846429] dark:text-[#E2C687]">
+                  <span>Open Dossier File</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
                 </div>
               </div>
@@ -474,12 +474,12 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
         </div>
       ) : (
         /* TABLE VIEW */
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+        <div className="bg-white dark:bg-[#1C1917] rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 font-bold uppercase tracking-wider text-[10px]">
-                  <th className="py-3 px-4">Employee / Labourer</th>
+                <tr className="bg-[#FAF7F2] dark:bg-[#25201C] text-stone-500 dark:text-stone-400 border-b border-[#E7DEC8] dark:border-[#383129] font-bold uppercase tracking-wider text-[10px]">
+                  <th className="py-3 px-4">Personnel</th>
                   <th className="py-3 px-4">ID & Trade</th>
                   <th className="py-3 px-4">Department & Site</th>
                   <th className="py-3 px-4">Status</th>
@@ -489,7 +489,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                   <th className="py-3 px-4 text-center">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-[#E7DEC8] dark:divide-[#2E2822]">
                 {filteredEmployees.map((emp) => {
                   const comp = employeeComplianceMap.get(emp.id);
                   const isCash = emp.salaryStructure.preferredPaymentMethod === 'Cash';
@@ -498,20 +498,20 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                     <tr
                       key={emp.id}
                       onClick={() => onSelectEmployee(emp)}
-                      className="hover:bg-indigo-50/40 dark:hover:bg-slate-800/60 cursor-pointer transition"
+                      className="hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] cursor-pointer transition"
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
                           <img
                             src={emp.photoUrl || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80'}
                             alt={emp.firstName}
-                            className="w-9 h-9 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-slate-700"
+                            className="w-9 h-9 rounded-lg object-cover ring-1 ring-[#E7DEC8] dark:ring-stone-700"
                           />
                           <div>
-                            <p className="font-extrabold text-slate-900 dark:text-white">
+                            <p className="font-bold text-stone-900 dark:text-white font-serif">
                               {emp.firstName} {emp.lastName}
                             </p>
-                            <p className="text-[11px] text-slate-500 font-medium">
+                            <p className="text-[11px] text-stone-500 font-medium">
                               {emp.employment.jobTitle}
                             </p>
                           </div>
@@ -519,13 +519,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                       </td>
 
                       <td className="py-3 px-4">
-                        <p className="font-mono font-bold text-slate-800 dark:text-slate-200">{emp.id}</p>
-                        <p className="text-[11px] text-slate-500">{emp.employment.trade}</p>
+                        <p className="font-mono font-bold text-stone-800 dark:text-stone-200">{emp.id}</p>
+                        <p className="text-[11px] text-stone-500">{emp.employment.trade}</p>
                       </td>
 
                       <td className="py-3 px-4">
-                        <p className="text-slate-800 dark:text-slate-200 font-semibold">{emp.employment.department}</p>
-                        <p className="text-[11px] text-slate-500 truncate max-w-[140px]">{emp.employment.workLocation}</p>
+                        <p className="text-stone-800 dark:text-stone-200 font-semibold">{emp.employment.department}</p>
+                        <p className="text-[11px] text-stone-500 truncate max-w-[140px]">{emp.employment.workLocation}</p>
                       </td>
 
                       <td className="py-3 px-4">
@@ -562,13 +562,13 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                         </Badge>
                       </td>
 
-                      <td className="py-3 px-4 text-right font-mono font-bold text-slate-900 dark:text-white">
+                      <td className="py-3 px-4 text-right font-mono font-bold text-stone-900 dark:text-white">
                         AED {emp.salaryStructure.basicSalary.toLocaleString()}
                       </td>
 
                       <td className="py-3 px-4 text-center">
-                        <span className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center justify-center gap-0.5">
-                          View File <ChevronRight className="w-3.5 h-3.5" />
+                        <span className="text-[#846429] dark:text-[#E2C687] font-bold hover:underline flex items-center justify-center gap-0.5">
+                          Open Dossier <ChevronRight className="w-3.5 h-3.5" />
                         </span>
                       </td>
                     </tr>
@@ -583,3 +583,4 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
     </div>
   );
 };
+

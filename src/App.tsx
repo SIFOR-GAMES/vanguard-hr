@@ -217,7 +217,7 @@ export const App: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `Vanguard_HR_Full_Backup_${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `Royal_Office_HR_Full_Backup_${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -228,7 +228,7 @@ export const App: React.FC = () => {
       alert('System data successfully restored from backup file!');
       refreshData();
     } else {
-      alert('Failed to parse backup JSON file. Please ensure it is a valid Vanguard HR export.');
+      alert('Failed to parse backup JSON file. Please ensure it is a valid Royal Office HR export.');
     }
   };
 

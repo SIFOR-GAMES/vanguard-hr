@@ -78,10 +78,10 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
             Payroll & Salary Payment Ledger
           </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
             Transparent tracking of exact payment dates, cash receipt vouchers, and bank WPS transfers.
           </p>
         </div>
@@ -89,61 +89,61 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
 
       {/* Financial KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs">
+          <span className="text-[11px] font-bold text-stone-400 uppercase tracking-wider block">
             Total Payout Disbursed
           </span>
-          <p className="text-2xl font-black text-slate-900 dark:text-white mt-2 font-mono">
+          <p className="text-2xl font-black text-stone-900 dark:text-white mt-2 font-mono">
             AED {totalPayroll.toLocaleString()}
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-stone-500 mt-1">
             {payments.length} total payments processed
           </p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 shadow-xs">
+        <div className="p-5 rounded-2xl bg-[#FBF8F0] dark:bg-[#2A2318] border border-[#ECDDBA] dark:border-[#5A451F] shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-blue-700 dark:text-blue-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-[#846429] dark:text-[#E2C687] uppercase tracking-wider flex items-center gap-1.5">
               <CreditCard className="w-4 h-4" />
               Bank Transfer (WPS)
             </span>
             <Badge variant="bank" size="sm">{bankCount} Disbursed</Badge>
           </div>
-          <p className="text-2xl font-black text-blue-900 dark:text-blue-100 mt-2 font-mono">
+          <p className="text-2xl font-black text-stone-900 dark:text-white mt-2 font-mono">
             AED {bankTotal.toLocaleString()}
           </p>
-          <p className="text-[11px] text-blue-600 dark:text-blue-300 mt-1">
-            Direct bank routing for administrative & technical staff
+          <p className="text-[11px] text-[#A17D34] dark:text-[#DFC792] mt-1">
+            Direct bank routing for administrative & technical personnel
           </p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 shadow-xs">
+        <div className="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
               <Banknote className="w-4 h-4" />
               Cash Payments
             </span>
             <Badge variant="cash" size="sm">{cashCount} Disbursed</Badge>
           </div>
-          <p className="text-2xl font-black text-emerald-900 dark:text-emerald-100 mt-2 font-mono">
+          <p className="text-2xl font-black text-emerald-950 dark:text-emerald-100 mt-2 font-mono">
             AED {cashTotal.toLocaleString()}
           </p>
-          <p className="text-[11px] text-emerald-600 dark:text-emerald-300 mt-1">
-            Site camp payments with signed cash vouchers
+          <p className="text-[11px] text-emerald-700 dark:text-emerald-300 mt-1">
+            Site workforce payments with signed cash vouchers
           </p>
         </div>
       </div>
 
       {/* Control Bar: Search & Filter */}
-      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div className="bg-white dark:bg-[#1C1917] p-4 rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
-            placeholder="Search employee, ID, ref..."
+            placeholder="Search personnel, ID, ref..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#BA9547] text-stone-900 dark:text-white"
           />
         </div>
 
@@ -152,7 +152,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
           <select
             value={periodFilter}
             onChange={(e) => setPeriodFilter(e.target.value)}
-            className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold"
+            className="p-2 rounded-xl bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200 font-semibold"
           >
             <option value="ALL">All Payment Periods</option>
             {periods.map(pr => (
@@ -164,7 +164,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
           <select
             value={methodFilter}
             onChange={(e) => setMethodFilter(e.target.value as any)}
-            className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold"
+            className="p-2 rounded-xl bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200 font-semibold"
           >
             <option value="ALL">All Methods</option>
             <option value="Cash">Cash Payments Only</option>
@@ -174,12 +174,12 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
       </div>
 
       {/* Master Payments Ledger Table */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-[#1C1917] rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
-                <th className="py-3 px-4">Employee / Labourer</th>
+              <tr className="bg-[#FAF7F2] dark:bg-[#25201C] text-stone-500 font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#383129]">
+                <th className="py-3 px-4">Personnel</th>
                 <th className="py-3 px-4">Period</th>
                 <th className="py-3 px-4">Exact Payment Date</th>
                 <th className="py-3 px-4">Payment Method</th>
@@ -190,14 +190,14 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                 <th className="py-3 px-4 text-center">Payslip</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-[#E7DEC8] dark:divide-[#2E2822]">
               {filteredPayments.map((p) => {
                 const emp = employeeMap.get(p.employeeId);
 
                 return (
                   <tr
                     key={p.id}
-                    className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition"
+                    className="hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] transition"
                   >
                     <td className="py-3 px-4">
                       {emp ? (
@@ -205,23 +205,23 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                           onClick={() => onSelectEmployee(emp)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                          <p className="font-bold text-stone-900 dark:text-white group-hover:text-[#846429] dark:group-hover:text-[#E2C687] transition font-serif">
                             {emp.firstName} {emp.lastName}
                           </p>
-                          <p className="text-[11px] text-slate-400 font-mono">
+                          <p className="text-[11px] text-stone-400 font-mono">
                             {emp.id} • {emp.employment.trade}
                           </p>
                         </div>
                       ) : (
-                        <span className="font-mono text-slate-400">{p.employeeId}</span>
+                        <span className="font-mono text-stone-400">{p.employeeId}</span>
                       )}
                     </td>
 
-                    <td className="py-3 px-4 font-bold text-slate-800 dark:text-slate-200">
+                    <td className="py-3 px-4 font-bold text-stone-800 dark:text-stone-200">
                       {p.period}
                     </td>
 
-                    <td className="py-3 px-4 font-mono font-bold text-slate-700 dark:text-slate-300">
+                    <td className="py-3 px-4 font-mono font-bold text-stone-700 dark:text-stone-300">
                       {p.paymentDate}
                     </td>
 
@@ -231,19 +231,19 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                       </Badge>
                     </td>
 
-                    <td className="py-3 px-4 font-mono text-slate-600 dark:text-slate-400">
+                    <td className="py-3 px-4 font-mono text-stone-600 dark:text-stone-400">
                       {p.transactionReference}
                     </td>
 
-                    <td className="py-3 px-4 font-mono text-slate-600 dark:text-slate-400">
+                    <td className="py-3 px-4 font-mono text-stone-600 dark:text-stone-400">
                       AED {(p.allowances + p.overtimePay).toLocaleString()}
                     </td>
 
-                    <td className="py-3 px-4 font-mono text-rose-600">
+                    <td className="py-3 px-4 font-mono text-rose-700">
                       {p.deductions > 0 ? `-AED ${p.deductions.toLocaleString()}` : '0.00'}
                     </td>
 
-                    <td className="py-3 px-4 text-right font-mono font-black text-slate-900 dark:text-white text-sm">
+                    <td className="py-3 px-4 text-right font-mono font-black text-stone-900 dark:text-white text-sm">
                       AED {p.netAmount.toLocaleString()}
                     </td>
 
@@ -251,7 +251,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                       {emp && (
                         <button
                           onClick={() => generatePayslipPdf(emp, p)}
-                          className="px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-bold rounded-lg transition inline-flex items-center gap-1 border border-indigo-200 dark:border-indigo-800"
+                          className="px-2.5 py-1.5 bg-[#FBF8F0] hover:bg-[#F5EEDB] dark:bg-[#2A2318] dark:hover:bg-[#342B1E] text-[#846429] dark:text-[#E2C687] font-bold rounded-lg transition inline-flex items-center gap-1 border border-[#ECDDBA] dark:border-[#5A451F]"
                           title="Generate Official Payslip PDF"
                         >
                           <Printer className="w-3 h-3" />
@@ -270,3 +270,4 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
     </div>
   );
 };
+

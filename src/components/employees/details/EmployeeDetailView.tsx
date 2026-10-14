@@ -262,21 +262,21 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition group self-start"
+          className="flex items-center gap-2 text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-[#BA9547] dark:hover:text-[#D4AF37] transition group self-start"
         >
-          <div className="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/60">
+          <div className="p-1 rounded-lg bg-stone-100 dark:bg-stone-800 group-hover:bg-[#FAF7F2] dark:group-hover:bg-[#2A2318] transition-colors">
             <ArrowLeft className="w-4 h-4" />
           </div>
-          <span>Back to Employee Directory</span>
+          <span>Back to Personnel Directory</span>
         </button>
 
         <div className="flex items-center gap-2">
           {auth.hasPermission('manage_documents') && (
             <button
               onClick={() => setIsUploadDocOpen(true)}
-              className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold transition flex items-center gap-1.5"
             >
-              <Upload className="w-3.5 h-3.5 text-indigo-600" />
+              <Upload className="w-3.5 h-3.5 text-[#BA9547]" />
               <span>Upload Document</span>
             </button>
           )}
@@ -284,9 +284,9 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {auth.hasPermission('manage_leaves') && (
             <button
               onClick={() => setIsRecordLeaveOpen(true)}
-              className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold transition flex items-center gap-1.5"
             >
-              <Calendar className="w-3.5 h-3.5 text-blue-600" />
+              <Calendar className="w-3.5 h-3.5 text-[#BA9547]" />
               <span>Record Leave</span>
             </button>
           )}
@@ -294,7 +294,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {auth.hasPermission('manage_payroll') && (
             <button
               onClick={() => setIsRecordPaymentOpen(true)}
-              className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/20 transition flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-xl bg-[#BA9547] hover:bg-[#A17D34] text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5"
             >
               <CreditCard className="w-3.5 h-3.5" />
               <span>Disburse Salary</span>
@@ -327,7 +327,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 </Badge>
               </div>
 
-              <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1">
+              <p className="text-sm font-bold text-[#846429] dark:text-[#D4AF37] mt-1">
                 {employee.employment.jobTitle} • {employee.employment.trade}
               </p>
 
@@ -345,11 +345,11 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {/* Quick Stats on Right */}
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-4 md:pt-0 md:pl-6 shrink-0">
             {/* Annual Leave Gauge */}
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-center min-w-[90px]">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+            <div className="p-3 rounded-2xl bg-[#FAF7F2] dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] text-center min-w-[90px]">
+              <span className="text-[10px] font-bold text-[#846429] dark:text-[#BA9547] uppercase tracking-wider block">
                 Annual Leave
               </span>
-              <p className="text-lg font-black text-indigo-600 dark:text-indigo-400 mt-0.5">
+              <p className="text-lg font-black text-[#846429] dark:text-[#D4AF37] mt-0.5">
                 {employee.leaveBalances.annual.remaining} <span className="text-xs text-slate-400 font-normal">/ {employee.leaveBalances.annual.total}d</span>
               </p>
               <span className="text-[10px] text-slate-500 font-medium">Remaining</span>
@@ -424,15 +424,15 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition whitespace-nowrap ${
                   isActive
-                    ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400'
-                    : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
+                    ? 'border-[#BA9547] text-[#846429] dark:text-[#D4AF37] dark:border-[#BA9547]'
+                    : 'border-transparent text-stone-500 hover:text-stone-800 dark:hover:text-stone-300'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.badge !== undefined && (
                   <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                    isActive ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300' : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                    isActive ? 'bg-[#FAF7F2] text-[#846429] dark:bg-[#2A2318] dark:text-[#E7DEC8] border border-[#E7DEC8] dark:border-[#3D352E]' : 'bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400'
                   }`}>
                     {tab.badge}
                   </span>
@@ -449,47 +449,47 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
       {activeTab === 'overview' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Employment & Assignment */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <Briefcase className="w-4 h-4 text-indigo-600" />
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+          <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs space-y-4">
+            <div className="flex items-center gap-2 border-b border-[#E7DEC8]/60 dark:border-[#3D352E] pb-3">
+              <Briefcase className="w-4 h-4 text-[#BA9547]" />
+              <h3 className="text-sm font-bold text-stone-900 dark:text-white uppercase tracking-wider">
                 Employment & Work Assignment
               </h3>
             </div>
 
             <div className="grid grid-cols-2 gap-4 text-xs">
               <div>
-                <span className="text-slate-400 font-medium">Category</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.category}</p>
+                <span className="text-stone-400 font-medium">Category</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.category}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Department</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.department}</p>
+                <span className="text-stone-400 font-medium">Department</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.department}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Designation / Title</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.jobTitle}</p>
+                <span className="text-stone-400 font-medium">Designation / Title</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.jobTitle}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Trade Specialization</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.trade}</p>
+                <span className="text-stone-400 font-medium">Trade Specialization</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.trade}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Joining Date</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 font-mono mt-0.5">{employee.employment.joiningDate}</p>
+                <span className="text-stone-400 font-medium">Joining Date</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 font-mono mt-0.5">{employee.employment.joiningDate}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Contract Type</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.contractType}</p>
+                <span className="text-stone-400 font-medium">Contract Type</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.contractType}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Official Sponsor</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">{employee.employment.sponsor}</p>
+                <span className="text-stone-400 font-medium">Official Sponsor</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5">{employee.employment.sponsor}</p>
               </div>
               <div>
-                <span className="text-slate-400 font-medium">Work Site / Project</span>
-                <p className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-indigo-500" />
+                <span className="text-stone-400 font-medium">Work Site / Project</span>
+                <p className="font-bold text-stone-800 dark:text-stone-200 mt-0.5 flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-[#BA9547]" />
                   {employee.employment.workLocation}
                 </p>
               </div>
@@ -562,7 +562,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             {auth.hasPermission('manage_documents') && (
               <button
                 onClick={() => setIsUploadDocOpen(true)}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs flex items-center gap-1.5 transition self-start sm:self-auto"
+                className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs flex items-center gap-1.5 transition self-start sm:self-auto"
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload New Document</span>
@@ -571,10 +571,10 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           </div>
 
           {employeeDocs.length === 0 ? (
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-800">
-              <FileText className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-              <p className="text-sm font-bold text-slate-700 dark:text-slate-300">No documents in file</p>
-              <p className="text-xs text-slate-500 mt-1">Upload the employee’s passport, visa, or labor card to begin tracking.</p>
+            <div className="bg-white dark:bg-stone-900 rounded-2xl p-12 text-center border border-[#E7DEC8] dark:border-[#3D352E]">
+              <FileText className="w-10 h-10 text-stone-300 mx-auto mb-2" />
+              <p className="text-sm font-bold text-stone-700 dark:text-stone-300">No documents in file</p>
+              <p className="text-xs text-stone-500 mt-1">Upload the employee’s passport, visa, or labor card to begin tracking.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -586,12 +586,12 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 return (
                   <div
                     key={doc.id}
-                    className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between hover:border-indigo-300 dark:hover:border-indigo-700 transition"
+                    className="bg-white dark:bg-stone-900 rounded-2xl p-5 border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs flex flex-col justify-between hover:border-[#BA9547]/50 dark:hover:border-[#BA9547]/50 transition"
                   >
                     <div>
                       {/* Top Bar with Category & Expiry Badge */}
                       <div className="flex items-start justify-between gap-2">
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#FAF7F2] text-[#846429] dark:bg-[#2A2318] dark:text-[#E7DEC8] border border-[#E7DEC8]/60 dark:border-[#3D352E]">
                           {doc.category}
                         </span>
                         <Badge variant={isExpired ? 'danger' : isExpiring ? 'warning' : 'success'} size="sm">
@@ -599,14 +599,14 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                         </Badge>
                       </div>
 
-                      <h4 className="font-extrabold text-sm text-slate-900 dark:text-white mt-3">
+                      <h4 className="font-extrabold text-sm text-stone-900 dark:text-white mt-3">
                         {doc.title}
                       </h4>
 
-                      <div className="mt-2 space-y-1 text-xs text-slate-500 dark:text-slate-400">
-                        <p className="font-mono">Doc #: <span className="font-bold text-slate-800 dark:text-slate-200">{doc.documentNumber}</span></p>
+                      <div className="mt-2 space-y-1 text-xs text-stone-500 dark:text-stone-400">
+                        <p className="font-mono">Doc #: <span className="font-bold text-stone-800 dark:text-stone-200">{doc.documentNumber}</span></p>
                         <p>Issue Date: <span className="font-mono">{doc.issueDate || 'N/A'}</span></p>
-                        <p>Expiry Date: <span className={`font-mono font-bold ${isExpired ? 'text-rose-600' : isExpiring ? 'text-amber-600' : 'text-slate-700 dark:text-slate-300'}`}>{doc.expiryDate}</span></p>
+                        <p>Expiry Date: <span className={`font-mono font-bold ${isExpired ? 'text-rose-600' : isExpiring ? 'text-amber-600' : 'text-stone-700 dark:text-stone-300'}`}>{doc.expiryDate}</span></p>
                         {doc.notes && (
                           <p className="text-[11px] text-amber-700 dark:text-amber-400 italic bg-amber-50 dark:bg-amber-950/40 p-1.5 rounded-lg border border-amber-200 dark:border-amber-900 mt-2">
                             {doc.notes}
@@ -616,15 +616,15 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                     </div>
 
                     {/* Actions bar */}
-                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-                      <span className="text-[11px] text-slate-400">
+                    <div className="mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-xs">
+                      <span className="text-[11px] text-stone-400">
                         {doc.fileSize} • {doc.fileName.split('.').pop()?.toUpperCase()}
                       </span>
 
                       <div className="flex items-center gap-1.5">
                         <button
                           onClick={() => setViewingDoc(doc)}
-                          className="p-1.5 rounded-lg text-slate-600 hover:text-indigo-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition"
+                          className="p-1.5 rounded-lg text-stone-600 hover:text-[#BA9547] hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800 transition"
                           title="View Document"
                         >
                           <Eye className="w-4 h-4" />
@@ -634,7 +634,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                           download={doc.fileName}
                           target="_blank"
                           rel="noreferrer"
-                          className="p-1.5 rounded-lg text-slate-600 hover:text-indigo-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition"
+                          className="p-1.5 rounded-lg text-stone-600 hover:text-[#BA9547] hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800 transition"
                           title="Download Document"
                         >
                           <Download className="w-4 h-4" />
@@ -668,29 +668,29 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {/* Three Tier Balance Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Annual Leave */}
-            <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+            <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-indigo-700 dark:text-indigo-300 uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#846429] dark:text-[#D4AF37] uppercase tracking-wider">
                   Annual Leave
                 </span>
-                <span className="text-xs font-bold text-slate-400">
+                <span className="text-xs font-bold text-stone-400">
                   Allocation: {employee.leaveBalances.annual.total}d
                 </span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-black text-slate-900 dark:text-white">
+                <span className="text-3xl font-black text-stone-900 dark:text-white">
                   {employee.leaveBalances.annual.remaining}
                 </span>
-                <span className="text-xs text-slate-500">days available</span>
+                <span className="text-xs text-stone-500">days available</span>
               </div>
               {/* Progress bar */}
-              <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-stone-100 dark:bg-stone-800 h-2 rounded-full overflow-hidden">
                 <div 
-                  className="bg-indigo-600 h-full" 
+                  className="bg-[#BA9547] h-full" 
                   style={{ width: `${Math.min(100, (employee.leaveBalances.annual.taken / employee.leaveBalances.annual.total) * 100)}%` }} 
                 />
               </div>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[11px] text-stone-500">
                 {employee.leaveBalances.annual.taken} days taken to date
               </p>
             </div>
@@ -771,7 +771,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                   </button>
                   <button
                     onClick={() => setIsRecordLeaveOpen(true)}
-                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5"
+                    className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5"
                   >
                     <PlusCircle className="w-3.5 h-3.5" />
                     <span>Record New Leave</span>
@@ -782,15 +782,15 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           </div>
 
           {/* Leave History Table */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
+          <div className="bg-white dark:bg-stone-900 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] overflow-hidden shadow-xs">
             {employeeLeaves.length === 0 ? (
-              <div className="p-8 text-center text-slate-400 text-xs">
+              <div className="p-8 text-center text-stone-400 text-xs">
                 No leave records registered for this employee.
               </div>
             ) : (
               <table className="w-full text-xs text-left">
                 <thead>
-                  <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
+                  <tr className="bg-[#FAF7F2] dark:bg-[#1E1B18] text-[#846429] dark:text-[#E7DEC8] font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#3D352E]">
                     <th className="py-3 px-4">Leave Type</th>
                     <th className="py-3 px-4">Dates</th>
                     <th className="py-3 px-4">Duration</th>
@@ -799,16 +799,16 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                     <th className="py-3 px-4">Approved By</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
                   {employeeLeaves.map((l) => (
-                    <tr key={l.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                      <td className="py-3 px-4 font-bold text-slate-900 dark:text-white">
+                    <tr key={l.id} className="hover:bg-[#FAF7F2]/60 dark:hover:bg-stone-800/40">
+                      <td className="py-3 px-4 font-bold text-stone-900 dark:text-white">
                         {l.leaveType} Leave
                       </td>
-                      <td className="py-3 px-4 font-mono text-slate-600 dark:text-slate-300">
+                      <td className="py-3 px-4 font-mono text-stone-600 dark:text-stone-300">
                         {l.startDate} → {l.endDate}
                       </td>
-                      <td className="py-3 px-4 font-bold text-indigo-600 dark:text-indigo-400">
+                      <td className="py-3 px-4 font-bold text-[#846429] dark:text-[#D4AF37]">
                         {l.durationDays} day(s)
                       </td>
                       <td className="py-3 px-4 text-slate-600 dark:text-slate-400 max-w-xs">
@@ -909,7 +909,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
               {auth.hasPermission('manage_payroll') && (
                 <button
                   onClick={() => setIsRecordPaymentOpen(true)}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto"
+                  className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto"
                 >
                   <PlusCircle className="w-3.5 h-3.5" />
                   <span>Record Salary Period</span>
@@ -918,7 +918,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             </div>
 
             {employeePayments.length === 0 ? (
-              <div className="p-8 text-center text-slate-400 text-xs">
+              <div className="p-8 text-center text-stone-400 text-xs">
                 No salary disbursement slips logged for this employee.
               </div>
             ) : (
@@ -926,27 +926,27 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 {employeePayments.map((p) => (
                   <div
                     key={p.id}
-                    className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-4 rounded-xl bg-[#FAF7F2] dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                        <h4 className="font-bold text-sm text-stone-900 dark:text-white">
                           Payslip for {p.period}
                         </h4>
                         <Badge variant={p.paymentMethod === 'Cash' ? 'cash' : 'bank'} size="sm">
                           {p.paymentMethod}
                         </Badge>
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mt-1">
-                        <span>Paid on: <strong className="font-mono text-slate-700 dark:text-slate-300">{p.paymentDate}</strong></span>
-                        <span>Voucher / Ref: <strong className="font-mono text-slate-700 dark:text-slate-300">{p.transactionReference}</strong></span>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 mt-1">
+                        <span>Paid on: <strong className="font-mono text-stone-700 dark:text-stone-300">{p.paymentDate}</strong></span>
+                        <span>Voucher / Ref: <strong className="font-mono text-stone-700 dark:text-stone-300">{p.transactionReference}</strong></span>
                         {p.overtimeHours > 0 && <span>OT: {p.overtimeHours} hrs (AED {p.overtimePay})</span>}
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <div className="text-right">
-                        <span className="text-[10px] text-slate-400 block uppercase font-bold">Net Payout</span>
+                        <span className="text-[10px] text-stone-400 block uppercase font-bold">Net Payout</span>
                         <span className="text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">
                           AED {p.netAmount.toLocaleString()}
                         </span>
@@ -954,7 +954,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
 
                       <button
                         onClick={() => generatePayslipPdf(employee, p)}
-                        className="px-3 py-2 bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 font-bold text-xs rounded-xl transition flex items-center gap-1.5 border border-indigo-200 dark:border-indigo-800"
+                        className="px-3 py-2 bg-[#FAF7F2] dark:bg-[#2A2318] hover:bg-[#F4ECE1] text-[#846429] dark:text-[#E7DEC8] font-bold text-xs rounded-xl transition flex items-center gap-1.5 border border-[#E7DEC8] dark:border-[#3D352E]"
                       >
                         <Printer className="w-3.5 h-3.5" />
                         <span>Download PDF Payslip</span>
@@ -971,12 +971,12 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
       {/* 5. SALARY PAYMENT TRACKING LEDGER TAB */}
       {activeTab === 'payments' && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">
+              <h3 className="text-base font-bold text-stone-900 dark:text-white">
                 Detailed Salary Payment Tracking
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-stone-500">
                 Payment method (Cash vs Bank), exact payment dates (Day, Month, Year), amounts, and audit vouchers.
               </p>
             </div>
@@ -984,7 +984,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             {auth.hasPermission('manage_payroll') && (
               <button
                 onClick={() => setIsRecordPaymentOpen(true)}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto"
+                className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
                 <span>Record Payment</span>
@@ -992,16 +992,16 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             )}
           </div>
 
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
+          <div className="bg-white dark:bg-stone-900 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] overflow-hidden shadow-xs">
             {employeePayments.length === 0 ? (
-              <div className="p-8 text-center text-slate-400 text-xs">
+              <div className="p-8 text-center text-stone-400 text-xs">
                 No salary payments logged yet.
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left">
                   <thead>
-                    <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
+                    <tr className="bg-[#FAF7F2] dark:bg-[#1E1B18] text-[#846429] dark:text-[#E7DEC8] font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#3D352E]">
                       <th className="py-3 px-4">Period</th>
                       <th className="py-3 px-4">Exact Payment Date</th>
                       <th className="py-3 px-4">Payment Method</th>
@@ -1012,13 +1012,13 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                       <th className="py-3 px-4 text-center">Receipt</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
                     {employeePayments.map((p) => (
-                      <tr key={p.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                        <td className="py-3 px-4 font-bold text-slate-900 dark:text-white">
+                      <tr key={p.id} className="hover:bg-[#FAF7F2]/60 dark:hover:bg-stone-800/40">
+                        <td className="py-3 px-4 font-bold text-stone-900 dark:text-white">
                           {p.period}
                         </td>
-                        <td className="py-3 px-4 font-mono font-bold text-slate-800 dark:text-slate-200">
+                        <td className="py-3 px-4 font-mono font-bold text-stone-800 dark:text-stone-200">
                           {p.paymentDate}
                         </td>
                         <td className="py-3 px-4">
@@ -1026,22 +1026,22 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                             {p.paymentMethod === 'Cash' ? 'Cash Voucher' : 'Bank Transfer'}
                           </Badge>
                         </td>
-                        <td className="py-3 px-4 font-mono text-slate-600 dark:text-slate-400">
+                        <td className="py-3 px-4 font-mono text-stone-600 dark:text-stone-400">
                           {p.transactionReference}
                         </td>
-                        <td className="py-3 px-4 text-slate-600 dark:text-slate-300 font-mono">
+                        <td className="py-3 px-4 text-stone-600 dark:text-stone-300 font-mono">
                           AED {(p.basicSalary + p.allowances + p.overtimePay).toLocaleString()}
                         </td>
                         <td className="py-3 px-4 text-rose-600 font-mono">
                           {p.deductions > 0 ? `-AED ${p.deductions.toLocaleString()}` : '0.00'}
                         </td>
-                        <td className="py-3 px-4 text-right font-mono font-black text-slate-900 dark:text-white text-sm">
+                        <td className="py-3 px-4 text-right font-mono font-black text-stone-900 dark:text-white text-sm">
                           AED {p.netAmount.toLocaleString()}
                         </td>
                         <td className="py-3 px-4 text-center">
                           <button
                             onClick={() => generatePayslipPdf(employee, p)}
-                            className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
+                            className="text-[#BA9547] dark:text-[#D4AF37] font-bold hover:underline"
                           >
                             PDF
                           </button>
@@ -1058,26 +1058,26 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
 
       {/* 6. MODIFICATION AUDIT TRAIL TAB */}
       {activeTab === 'audit' && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">
+        <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs space-y-4">
+          <div className="border-b border-[#E7DEC8]/60 dark:border-[#3D352E] pb-3">
+            <h3 className="text-base font-bold text-stone-900 dark:text-white">
               Employee File Audit Log
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-stone-500">
               Immutable history of updates, document uploads, leave approvals, and salary payouts.
             </p>
           </div>
 
           {employeeAudits.length === 0 ? (
-            <p className="text-xs text-slate-400 py-6 text-center">No specific events recorded for this file.</p>
+            <p className="text-xs text-stone-400 py-6 text-center">No specific events recorded for this file.</p>
           ) : (
             <div className="space-y-3">
               {employeeAudits.map((a) => (
                 <div
                   key={a.id}
-                  className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-xs flex items-start gap-3"
+                  className="p-3 rounded-xl bg-[#FAF7F2] dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] text-xs flex items-start gap-3"
                 >
-                  <div className="p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 font-bold shrink-0">
+                  <div className="p-1.5 rounded-lg bg-[#FAF7F2] dark:bg-[#2A2318] text-[#846429] dark:text-[#D4AF37] border border-[#E7DEC8]/60 dark:border-[#3D352E] font-bold shrink-0">
                     {a.action}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -1215,7 +1215,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs"
             >
               Save to Digital File
             </button>
@@ -1297,7 +1297,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs"
             >
               Approve & Deduct Balance
             </button>
@@ -1315,7 +1315,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
         <form onSubmit={handleBalanceAdjustSubmit} className="space-y-4 text-xs">
           <div className="space-y-3">
             <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
-              <span className="font-bold text-indigo-600 uppercase block mb-2">Annual Leave</span>
+              <span className="font-bold text-[#846429] dark:text-[#D4AF37] uppercase block mb-2">Annual Leave</span>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[11px] text-slate-500 mb-1">Total Allocated</label>
@@ -1397,7 +1397,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs"
             >
               Save New Balances
             </button>
@@ -1541,7 +1541,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs"
             >
               Confirm Disbursement & Save
             </button>
@@ -1576,7 +1576,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 download={viewingDoc.fileName}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl flex items-center gap-1.5"
+                className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold rounded-xl flex items-center gap-1.5 shadow-xs"
               >
                 <Download className="w-4 h-4" />
                 <span>Download File</span>

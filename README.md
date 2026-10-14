@@ -1,30 +1,25 @@
-# Vanguard HR — Enterprise Employee & Labourer Management System
+# HR System for Office of His Highness Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
+*مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان — نظام الموارد البشرية*
 
-A centralized, responsive web platform designed for human resources departments managing diverse staff and labour workforces. Features individual digital files, automated document expiry and compliance tracking, multi-tier leave balance management, salary records, payment tracking (Cash vs. Bank Transfer), official PDF payslip generation, and an immutable audit trail.
+A simplified, regal web platform tailored for the human resources administration of the **Office of His Highness Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan**. Designed with a warm ivory letterhead aesthetic (`#FAF7F2`), UAE Golden Falcon emblem, metallic gold accents (`#BA9547`), and warm sand borders (`#E7DEC8`).
+
+Features digital personnel files, UAE document compliance and expiry radar, multi-tier leave balances, salary structures, cash voucher vs. bank WPS disbursement tracking, official letterhead PDF payslips, and an immutable audit trail.
 
 ---
 
 ## Key Modules
 
-- **Employee & Labourer Directory**: Searchable records, multi-filtering (trade, category, duty status, compliance status), and dual Card Grid / DataGrid Table views.
+- **Personnel Directory**: Searchable records, quick filtering (trades, staff vs. labour, active status, document compliance), and dual Card Grid / DataGrid views.
 - **Individual Digital Dossier**:
-  - **Profile Details**: Contact, trade specialty, site location, sponsor, emergency contacts.
-  - **Documents Vault**: Categorized documents (Passport, Visa, Emirates ID, Labor Card, Medical Insurance, Safety Certifications) with live expiry badges (Valid, Expiring Soon, Expired).
+  - **Profile Details**: Contact, trade specialty, assignment location, official sponsorship, emergency contacts.
+  - **Documents Vault**: Categorized credentials (Passport, Visa, Emirates ID, Labor Card, Medical Insurance, Safety Certifications) with live expiry badges (Valid, Expiring Soon, Expired).
   - **Leave Balances**: 3-tier tracking for Annual, Sick, and Emergency leave balances with automatic deduction on approval and HR adjustment.
-  - **Salary & Compensation Records**: Wage breakdown and built-in **Official PDF Payslip Generator** compliant with UAE/GCC labor standards.
-  - **Payment Tracking**: Full payment ledger capturing exact dates (Day, Month, Year), transaction/voucher references, and Cash vs. Bank transfer methods.
-  - **Modification Audit**: Dedicated activity timeline for every employee record.
-- **Company-Wide Compliance Manager**: Radar for upcoming document expirations with 1-click CSV export.
+  - **Salary & Compensation Records**: Wage breakdown and built-in **Official Letterhead PDF Payslip Generator** featuring UAE Falcon Coat of Arms and bilingual office headers.
+  - **Payment Tracking**: Full disbursement ledger capturing exact dates (Day, Month, Year), transaction/voucher references, and Cash Voucher vs. Bank WPS methods.
+  - **Modification Audit**: Dedicated activity timeline for every personnel record.
+- **Office Document Compliance Radar**: 30/60/90-day expiry notifications with 1-click CSV report export.
 - **Payroll Center**: Monthly disbursement analytics and cash-to-bank distribution breakdown.
-- **Role-Based Access Control (RBAC)**: Password-protected sign-in portal with Super Admin, HR Manager, Payroll Officer, and Auditor roles.
-
----
-
-## Live Deployment
-
-- **Live Web Application**: [https://vanguard-hr-e4dcf3.9pm.ai](https://vanguard-hr-e4dcf3.9pm.ai)
-- **GitHub Repository**: [https://github.com/SIFOR-GAMES/vanguard-hr](https://github.com/SIFOR-GAMES/vanguard-hr)
-- **Hosted on**: [9pm.ai](https://9pm.ai)
+- **Role-Based Access Control (RBAC)**: Secure access portal with Super Admin, HR Manager, Payroll Officer, and Auditor roles.
 
 ---
 
@@ -32,10 +27,12 @@ A centralized, responsive web platform designed for human resources departments 
 
 | Role | Email | Password | Permissions |
 | :--- | :--- | :--- | :--- |
-| **Super Admin** | `admin@vanguardhr.com` | `admin123` | Full access to all modules, records, and deletions |
-| **HR Manager** | `hr@vanguardhr.com` | `hr123` | Employee records, document uploads, and leave approvals |
-| **Payroll Officer** | `payroll@vanguardhr.com` | `payroll123` | Salary structures, payments, and PDF payslip generation |
-| **Auditor** | `auditor@vanguardhr.com` | `auditor123` | Read-only access to files and full audit logs |
+| **Super Admin** | `admin@officehh.ae` | `admin123` | Full access to all modules, records, and deletions |
+| **HR Manager** | `hr@officehh.ae` | `hr123` | Personnel records, document uploads, and leave approvals |
+| **Payroll Officer** | `payroll@officehh.ae` | `payroll123` | Salary structures, payments, and PDF payslip generation |
+| **Auditor** | `auditor@officehh.ae` | `auditor123` | Read-only access to files and full audit logs |
+
+*(Legacy `@vanguardhr.com` credentials remain supported for backward compatibility)*
 
 ---
 

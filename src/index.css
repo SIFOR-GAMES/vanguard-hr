@@ -1,16 +1,41 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg-stationery: #FAF7F2;
+    --card-stationery: #FFFFFF;
+    --border-stationery: #E7DEC8;
+    --gold-primary: #BA9547;
+    --gold-dark: #846429;
+    --text-primary: #1C1917;
+  }
+
+  .dark {
+    --bg-stationery: #141210;
+    --card-stationery: #1C1917;
+    --border-stationery: #2E2923;
+    --gold-primary: #D4AF37;
+    --gold-dark: #A17D34;
+    --text-primary: #F5F5F4;
+  }
+
   body {
+    background-color: var(--bg-stationery);
+    color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
   
   code, pre {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  ::selection {
+    background-color: #BA9547;
+    color: #FFFFFF;
+  }
 }
 
-/* Custom scrollbars */
+/* Custom royal gold scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -21,18 +46,39 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(186, 149, 71, 0.35);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.7);
+  background: rgba(161, 125, 52, 0.65);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.6);
+  background: rgba(186, 149, 71, 0.3);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.8);
+  background: rgba(212, 175, 55, 0.6);
 }
+
+/* Luxury gold text shine helper */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #7A5B1E 0%, #BA9547 50%, #8A6B2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gold-gradient {
+  background: linear-gradient(135deg, #F3DEAB 0%, #D4AF37 50%, #E6C275 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle stationery card shadow */
+.stationery-card {
+  background-color: var(--card-stationery);
+  border: 1px solid var(--border-stationery);
+  box-shadow: 0 1px 3px 0 rgba(70, 55, 30, 0.04), 0 1px 2px -1px rgba(70, 55, 30, 0.04);
+}
+

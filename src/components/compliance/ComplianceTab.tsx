@@ -102,7 +102,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `Vanguard_Document_Compliance_Report_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `Royal_Office_Document_Compliance_Report_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -115,23 +115,23 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
               Document Compliance & Expiry Tracking
             </h1>
-            <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300">
-              {expiredCount + expiring30Count} Urgent
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-200 dark:border-rose-900">
+              {expiredCount + expiring30Count} Urgent Actions
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
             Real-time validity auditing for Passports, Visas, Emirates IDs, Work Permits & Medical Cards.
           </p>
         </div>
 
         <button
           onClick={exportCsv}
-          className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition flex items-center gap-2 self-start sm:self-auto border border-slate-200 dark:border-slate-700"
+          className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#1C1917] hover:bg-[#FAF7F2] dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs font-bold transition flex items-center gap-2 self-start sm:self-auto border border-[#E7DEC8] dark:border-[#383129]"
         >
-          <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+          <FileSpreadsheet className="w-4 h-4 text-emerald-700" />
           <span>Export Compliance CSV</span>
         </button>
       </div>
@@ -143,19 +143,19 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           className={`p-4 rounded-2xl border transition cursor-pointer ${
             filterType === 'EXPIRED'
               ? 'bg-rose-50 dark:bg-rose-950/60 border-rose-300 dark:border-rose-800 ring-2 ring-rose-500/20'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-rose-300'
+              : 'bg-white dark:bg-[#1C1917] border-[#E7DEC8] dark:border-[#383129] hover:border-rose-300'
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">
               Expired Documents
             </span>
-            <AlertTriangle className="w-4 h-4 text-rose-600" />
+            <AlertTriangle className="w-4 h-4 text-rose-700" />
           </div>
-          <p className="text-2xl font-black text-rose-600 dark:text-rose-400 mt-2">
+          <p className="text-2xl font-black text-rose-700 dark:text-rose-400 mt-2 font-serif">
             {expiredCount}
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">Requires immediate renewal</p>
+          <p className="text-[11px] text-stone-500 mt-1">Requires immediate renewal</p>
         </div>
 
         <div 
@@ -163,39 +163,39 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           className={`p-4 rounded-2xl border transition cursor-pointer ${
             filterType === 'EXPIRING_30'
               ? 'bg-amber-50 dark:bg-amber-950/60 border-amber-300 dark:border-amber-800 ring-2 ring-amber-500/20'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-amber-300'
+              : 'bg-white dark:bg-[#1C1917] border-[#E7DEC8] dark:border-[#383129] hover:border-amber-300'
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wider">
               Expiring &lt; 30 Days
             </span>
-            <Clock className="w-4 h-4 text-amber-600" />
+            <Clock className="w-4 h-4 text-amber-800" />
           </div>
-          <p className="text-2xl font-black text-amber-600 dark:text-amber-400 mt-2">
+          <p className="text-2xl font-black text-amber-800 dark:text-amber-400 mt-2 font-serif">
             {expiring30Count}
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">Submit renewal papers</p>
+          <p className="text-[11px] text-stone-500 mt-1">Submit renewal papers</p>
         </div>
 
         <div 
           onClick={() => setFilterType(filterType === 'EXPIRING_60' ? 'ALL' : 'EXPIRING_60')}
           className={`p-4 rounded-2xl border transition cursor-pointer ${
             filterType === 'EXPIRING_60'
-              ? 'bg-indigo-50 dark:bg-indigo-950/60 border-indigo-300 dark:border-indigo-800 ring-2 ring-indigo-500/20'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-indigo-300'
+              ? 'bg-[#FBF8F0] dark:bg-[#2A2318] border-[#ECDDBA] dark:border-[#5A451F] ring-2 ring-[#BA9547]/20'
+              : 'bg-white dark:bg-[#1C1917] border-[#E7DEC8] dark:border-[#383129] hover:border-[#BA9547]'
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-[#846429] dark:text-[#E2C687] uppercase tracking-wider">
               Expiring 31–60 Days
             </span>
-            <Clock className="w-4 h-4 text-indigo-600" />
+            <Clock className="w-4 h-4 text-[#846429] dark:text-[#E2C687]" />
           </div>
-          <p className="text-2xl font-black text-indigo-600 dark:text-indigo-400 mt-2">
+          <p className="text-2xl font-black text-[#846429] dark:text-[#E2C687] mt-2 font-serif">
             {expiring60Count}
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">Upcoming renewals queue</p>
+          <p className="text-[11px] text-stone-500 mt-1">Upcoming renewals queue</p>
         </div>
 
         <div 
@@ -203,32 +203,32 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           className={`p-4 rounded-2xl border transition cursor-pointer ${
             filterType === 'VALID'
               ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-800 ring-2 ring-emerald-500/20'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-emerald-300'
+              : 'bg-white dark:bg-[#1C1917] border-[#E7DEC8] dark:border-[#383129] hover:border-emerald-300'
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider">
               Fully Compliant
             </span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-800" />
           </div>
-          <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-2">
+          <p className="text-2xl font-black text-emerald-800 dark:text-emerald-400 mt-2 font-serif">
             {validCount}
           </p>
-          <p className="text-[11px] text-slate-500 mt-1">&gt; 60 days validity remaining</p>
+          <p className="text-[11px] text-stone-500 mt-1">&gt; 60 days validity remaining</p>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div className="bg-white dark:bg-[#1C1917] p-4 rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
             placeholder="Search document title, ID, employee..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#BA9547] text-stone-900 dark:text-white"
           />
         </div>
 
@@ -236,7 +236,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold"
+            className="p-2 rounded-xl bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200 font-semibold"
           >
             <option value="ALL">All Categories</option>
             <option value="Passport">Passport</option>
@@ -250,7 +250,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           {filterType !== 'ALL' && (
             <button
               onClick={() => setFilterType('ALL')}
-              className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+              className="font-bold text-[#846429] dark:text-[#E2C687] hover:underline"
             >
               Show All
             </button>
@@ -259,12 +259,12 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
       </div>
 
       {/* Compliance Master Ledger Table */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-[#1C1917] rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
-                <th className="py-3 px-4">Employee / Labourer</th>
+              <tr className="bg-[#FAF7F2] dark:bg-[#25201C] text-stone-500 font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#383129]">
+                <th className="py-3 px-4">Personnel</th>
                 <th className="py-3 px-4">Document Title</th>
                 <th className="py-3 px-4">Category</th>
                 <th className="py-3 px-4">Document / Permit #</th>
@@ -274,7 +274,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                 <th className="py-3 px-4 text-center">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-[#E7DEC8] dark:divide-[#2E2822]">
               {filteredDocs.map((doc) => {
                 const isExpired = doc.expiryStatus.status === 'expired';
                 const isExpiring = doc.expiryStatus.status === 'expiring';
@@ -282,7 +282,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                 return (
                   <tr
                     key={doc.id}
-                    className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition"
+                    className="hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] transition"
                   >
                     <td className="py-3 px-4">
                       {doc.employee ? (
@@ -290,38 +290,38 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                           onClick={() => onSelectEmployee(doc.employee!)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                          <p className="font-bold text-stone-900 dark:text-white group-hover:text-[#846429] dark:group-hover:text-[#E2C687] transition font-serif">
                             {doc.employee.firstName} {doc.employee.lastName}
                           </p>
-                          <p className="text-[11px] text-slate-400 font-mono">
+                          <p className="text-[11px] text-stone-400 font-mono">
                             {doc.employee.id} • {doc.employee.employment.trade}
                           </p>
                         </div>
                       ) : (
-                        <span className="font-mono text-slate-400">{doc.employeeId}</span>
+                        <span className="font-mono text-stone-400">{doc.employeeId}</span>
                       )}
                     </td>
 
-                    <td className="py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">
+                    <td className="py-3 px-4 font-semibold text-stone-800 dark:text-stone-200">
                       {doc.title}
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF7F2] dark:bg-[#25201C] text-stone-700 dark:text-stone-300 border border-[#E7DEC8] dark:border-[#383129]">
                         {doc.category}
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 font-mono text-slate-700 dark:text-slate-300">
+                    <td className="py-3 px-4 font-mono text-stone-700 dark:text-stone-300">
                       {doc.documentNumber}
                     </td>
 
-                    <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-white">
+                    <td className="py-3 px-4 font-mono font-bold text-stone-900 dark:text-white">
                       {doc.expiryDate}
                     </td>
 
                     <td className="py-3 px-4 font-bold">
-                      <span className={isExpired ? 'text-rose-600' : isExpiring ? 'text-amber-600' : 'text-emerald-600'}>
+                      <span className={isExpired ? 'text-rose-700' : isExpiring ? 'text-amber-700' : 'text-emerald-700'}>
                         {doc.expiryStatus.daysLeft < 0 ? `${Math.abs(doc.expiryStatus.daysLeft)}d overdue` : `${doc.expiryStatus.daysLeft} days`}
                       </span>
                     </td>
@@ -336,7 +336,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                       <div className="flex items-center justify-center gap-1.5">
                         <button
                           onClick={() => setPreviewDoc(doc)}
-                          className="p-1 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800"
+                          className="p-1 rounded-lg text-stone-500 hover:text-[#846429] hover:bg-[#FAF7F2] dark:hover:bg-stone-800"
                           title="Preview"
                         >
                           <Eye className="w-4 h-4" />
@@ -344,7 +344,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                         {doc.employee && (
                           <button
                             onClick={() => onSelectEmployee(doc.employee!)}
-                            className="p-1 rounded-lg text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950 font-bold text-[11px] flex items-center"
+                            className="p-1 rounded-lg text-[#846429] dark:text-[#E2C687] hover:bg-[#FBF8F0] dark:hover:bg-[#2A2318] font-bold text-[11px] flex items-center"
                             title="Open dossier"
                           >
                             <ChevronRight className="w-4 h-4" />
@@ -369,7 +369,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           subtitle={`Doc Number: ${previewDoc.documentNumber} • Expiry: ${previewDoc.expiryDate}`}
         >
           <div className="space-y-4">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 max-h-[60vh] flex items-center justify-center bg-slate-100 dark:bg-slate-800">
+            <div className="rounded-2xl overflow-hidden border border-[#E7DEC8] dark:border-[#383129] max-h-[60vh] flex items-center justify-center bg-[#FAF7F2] dark:bg-[#1C1917]">
               <img
                 src={previewDoc.fileUrl}
                 alt={previewDoc.title}
@@ -382,7 +382,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                 download={previewDoc.fileName}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl flex items-center gap-1.5"
+                className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-xs"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Document</span>

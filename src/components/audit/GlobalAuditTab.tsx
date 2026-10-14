@@ -52,7 +52,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `Vanguard_Audit_Trail_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `Royal_Office_Audit_Trail_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -84,37 +84,37 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              System Audit Trail & Compliance Log
+            <h1 className="text-xl sm:text-2xl font-bold font-serif text-stone-900 dark:text-white tracking-tight">
+              Official System Audit Trail & Security Log
             </h1>
-            <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] border border-[#ECDDBA] dark:border-[#5A451F]">
               {auditLogs.length} Records
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
             Immutable tracking of user activities, document modifications, salary payouts, and leave adjustments.
           </p>
         </div>
 
         <button
           onClick={exportCsv}
-          className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition flex items-center gap-2 self-start sm:self-auto border border-slate-200 dark:border-slate-700"
+          className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#1C1917] hover:bg-[#FAF7F2] dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs font-bold transition flex items-center gap-2 self-start sm:self-auto border border-[#E7DEC8] dark:border-[#383129]"
         >
-          <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+          <FileSpreadsheet className="w-4 h-4 text-emerald-700" />
           <span>Export Audit CSV</span>
         </button>
       </div>
 
       {/* Control Bar: Search & Action Filter */}
-      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div className="bg-white dark:bg-[#1C1917] p-4 rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
             placeholder="Search details, user, target..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#BA9547] text-stone-900 dark:text-white"
           />
         </div>
 
@@ -122,7 +122,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
           <select
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold"
+            className="p-2 rounded-xl bg-[#FAF7F2] dark:bg-[#24201C] border border-[#E7DEC8] dark:border-[#383129] text-stone-800 dark:text-stone-200 font-semibold"
           >
             <option value="ALL">All Actions</option>
             <option value="LOGIN">LOGIN</option>
@@ -137,11 +137,11 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-[#1C1917] rounded-2xl border border-[#E7DEC8] dark:border-[#383129] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
+              <tr className="bg-[#FAF7F2] dark:bg-[#25201C] text-stone-500 font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#383129]">
                 <th className="py-3 px-4">Date & Time</th>
                 <th className="py-3 px-4">Authorized User</th>
                 <th className="py-3 px-4">Action</th>
@@ -149,23 +149,23 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
                 <th className="py-3 px-4">Event Details</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-[#E7DEC8] dark:divide-[#2E2822]">
               {filteredLogs.map((log) => (
-                <tr key={log.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                  <td className="py-3 px-4 font-mono text-slate-500 whitespace-nowrap">
+                <tr key={log.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#25201C] transition">
+                  <td className="py-3 px-4 font-mono text-stone-500 whitespace-nowrap">
                     {new Date(log.timestamp).toLocaleString()}
                   </td>
                   <td className="py-3 px-4 whitespace-nowrap">
-                    <span className="font-bold text-slate-800 dark:text-slate-200 block">{log.userName}</span>
-                    <span className="text-[10px] text-slate-400">{log.userRole}</span>
+                    <span className="font-bold text-stone-900 dark:text-stone-100 block font-serif">{log.userName}</span>
+                    <span className="text-[10px] text-stone-400">{log.userRole}</span>
                   </td>
                   <td className="py-3 px-4 whitespace-nowrap">
                     {getActionBadge(log.action)}
                   </td>
-                  <td className="py-3 px-4 whitespace-nowrap font-medium text-slate-600 dark:text-slate-300">
+                  <td className="py-3 px-4 whitespace-nowrap font-medium text-stone-700 dark:text-stone-300">
                     {log.targetType}
                   </td>
-                  <td className="py-3 px-4 text-slate-700 dark:text-slate-300 max-w-md">
+                  <td className="py-3 px-4 text-stone-700 dark:text-stone-300 max-w-md">
                     {log.details}
                   </td>
                 </tr>

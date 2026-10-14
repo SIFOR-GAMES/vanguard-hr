@@ -69,7 +69,7 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
         : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
       contact: {
         phone,
-        email: email || `${firstName.toLowerCase()}.${lastName.toLowerCase()}@workers.vanguard.com`,
+        email: email || `${firstName.toLowerCase()}.${lastName.toLowerCase()}@workers.officehh.ae`,
         emergencyContactName: emergencyName || 'Family Member',
         emergencyContactRelation: 'Spouse/Parent',
         emergencyContactPhone: emergencyPhone || phone,
@@ -83,7 +83,7 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
         joiningDate,
         contractType,
         status: 'Active',
-        sponsor: 'Vanguard Contracting LLC',
+        sponsor: 'Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan',
         workLocation,
         laborCardNumber,
         nationalIdNumber,
@@ -147,8 +147,8 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
               }}
               className={`flex-1 p-3 rounded-xl border flex items-center justify-center gap-2 font-bold transition ${
                 category === cat
-                  ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 ring-2 ring-indigo-500/20'
-                  : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                  ? 'border-[#BA9547] bg-[#FBF8F0] dark:bg-[#2A2318] text-[#846429] dark:text-[#E2C687] ring-2 ring-[#BA9547]/20'
+                  : 'border-[#E7DEC8] dark:border-[#383129] hover:bg-[#FAF7F2] dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
               }`}
             >
               {cat === 'Labourer' ? <HardHat className="w-4 h-4" /> : <Building className="w-4 h-4" />}
@@ -362,20 +362,20 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
         </div>
 
         {/* Footer buttons */}
-        <div className="flex justify-end gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex justify-end gap-3 pt-3 border-t border-[#E7DEC8] dark:border-[#2E2822]">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+            className="px-4 py-2 font-bold text-stone-600 dark:text-stone-300 hover:bg-[#FAF7F2] dark:hover:bg-stone-800 rounded-xl"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-md shadow-indigo-600/20 flex items-center gap-1.5"
+            className="px-5 py-2.5 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold rounded-xl shadow-xs flex items-center gap-1.5 transition"
           >
             <UserPlus className="w-4 h-4" />
-            <span>Register & Create Digital File</span>
+            <span>Register & Create Dossier File</span>
           </button>
         </div>
       </form>
