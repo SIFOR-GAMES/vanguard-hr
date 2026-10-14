@@ -20,6 +20,7 @@ interface SidebarProps {
   onCloseMobile: () => void;
   userRole?: UserRole;
   expiringDocsCount: number;
+  hideDesktop?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -28,6 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   mobileOpen,
   onCloseMobile,
   expiringDocsCount,
+  hideDesktop = false,
 }) => {
   const navItems = [
     {
@@ -177,11 +179,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Desktop Sticky Sidebar */}
-      <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md">
-        <div className="sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-          {content}
-        </div>
-      </aside>
+      {!hideDesktop && (
+        <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md">
+          <div className="sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
+            {content}
+          </div>
+        </aside>
+      )}
 
       {/* Mobile Drawer (Off-canvas) */}
       {mobileOpen && (

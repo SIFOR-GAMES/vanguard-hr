@@ -13,6 +13,7 @@ import { auth } from './services/auth';
 
 import { Navbar } from './components/common/Navbar';
 import { Sidebar, ActiveTab } from './components/common/Sidebar';
+import { Footer } from './components/common/Footer';
 import { LoginModal } from './components/auth/LoginModal';
 import { DashboardTab } from './components/dashboard/DashboardTab';
 import { EmployeeList } from './components/employees/EmployeeList';
@@ -267,12 +268,17 @@ export const App: React.FC = () => {
         onExportBackup={handleExportBackup}
         onImportBackup={handleImportBackup}
         onResetData={handleResetData}
+        activeTab={activeTab}
+        onSelectTab={(tab) => {
+          setActiveTab(tab);
+          setSelectedEmployee(null);
+        }}
       />
 
       {/* Main Container with Sidebar & Content */}
       <div className="flex-1 max-w-7xl w-full mx-auto flex">
         
-        {/* Sidebar Navigation */}
+        {/* Sidebar Navigation (hidden on desktop for dashboard to create open u.ae portal layout) */}
         <Sidebar
           activeTab={activeTab}
           onSelectTab={(tab) => {
@@ -283,6 +289,7 @@ export const App: React.FC = () => {
           onCloseMobile={() => setMobileSidebarOpen(false)}
           userRole={currentUser?.role}
           expiringDocsCount={expiringDocsCount}
+          hideDesktop={activeTab === 'dashboard'}
         />
 
         {/* Tab Content Area */}
@@ -345,6 +352,14 @@ export const App: React.FC = () => {
           ) : null}
         </main>
       </div>
+
+      {/* Official UAE Government Style Footer */}
+      <Footer
+        onSelectTab={(tab) => {
+          setActiveTab(tab);
+          setSelectedEmployee(null);
+        }}
+      />
 
       {/* Login Modal */}
       <LoginModal

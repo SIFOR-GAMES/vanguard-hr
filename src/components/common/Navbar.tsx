@@ -30,6 +30,8 @@ interface NavbarProps {
   onExportBackup: () => void;
   onImportBackup: (json: string) => void;
   onResetData: () => void;
+  activeTab?: 'dashboard' | 'employees' | 'compliance' | 'payroll' | 'audit';
+  onSelectTab?: (tab: 'dashboard' | 'employees' | 'compliance' | 'payroll' | 'audit') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -45,6 +47,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onExportBackup,
   onImportBackup,
   onResetData,
+  activeTab = 'dashboard',
+  onSelectTab,
 }) => {
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
   const [dataDropdownOpen, setDataDropdownOpen] = useState(false);
@@ -143,13 +147,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right: Actions & User Role Switcher */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* u.ae Style Language Button */}
+            <div className="hidden sm:flex items-center">
+              <span className="px-2.5 py-1 text-xs font-arabic font-bold text-[#1E683E] dark:text-[#34D399] bg-[#EBF5EF] dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-800/80 cursor-default">
+                العربية
+              </span>
+            </div>
+
             {/* Dark Mode Toggle */}
             <button
               onClick={onToggleDarkMode}
-              className="p-2 text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 rounded-xl hover:bg-[#F2ECE1] dark:hover:bg-stone-800 transition"
-              title={darkMode ? 'Switch to Light Stationery Mode' : 'Switch to Dark Mode'}
+              className="p-2 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {darkMode ? <Sun className="w-4 h-4 text-[#D4AF37]" /> : <Moon className="w-4 h-4 text-[#846429]" />}
+              {darkMode ? <Sun className="w-4 h-4 text-[#BA9547]" /> : <Moon className="w-4 h-4 text-slate-600" />}
             </button>
 
             {/* Data & Backup Tools Dropdown */}
@@ -295,7 +306,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button
                 onClick={onOpenLogin}
-                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-[#BA9547] hover:bg-[#A17D34] active:scale-95 rounded-xl shadow-xs transition"
+                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-[#1E683E] hover:bg-[#165130] active:scale-95 rounded-xl shadow-xs transition"
               >
                 <LogIn className="w-3.5 h-3.5" />
                 <span>Sign In</span>
@@ -304,6 +315,36 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           </div>
 
+        </div>
+      </div>
+
+      {/* u.ae Horizontal Navigation Sub-bar */}
+      <div className="border-t border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-[#0F172A]/80 hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex space-x-8 text-xs sm:text-sm font-semibold">
+            {[
+              { id: 'dashboard', label: 'Home' },
+              { id: 'employees', label: 'Personnel Directory' },
+              { id: 'compliance', label: 'Compliance Radar' },
+              { id: 'payroll', label: 'Payroll & Wages' },
+              { id: 'audit', label: 'Audit Timeline' },
+            ].map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onSelectTab && onSelectTab(item.id as any)}
+                  className={`py-3.5 border-b-2 font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                    isActive
+                      ? 'border-[#1E683E] text-[#1E683E] dark:text-[#34D399] dark:border-[#34D399]'
+                      : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </nav>
         </div>
       </div>
     </header>

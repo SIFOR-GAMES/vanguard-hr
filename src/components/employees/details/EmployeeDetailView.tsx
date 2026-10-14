@@ -327,7 +327,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 </Badge>
               </div>
 
-              <p className="text-sm font-bold text-[#846429] dark:text-[#D4AF37] mt-1">
+              <p className="text-sm font-bold text-[#1E683E] dark:text-[#34D399] mt-1">
                 {employee.employment.jobTitle} • {employee.employment.trade}
               </p>
 
@@ -345,14 +345,14 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {/* Quick Stats on Right */}
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-4 md:pt-0 md:pl-6 shrink-0">
             {/* Annual Leave Gauge */}
-            <div className="p-3 rounded-2xl bg-[#FAF7F2] dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] text-center min-w-[90px]">
-              <span className="text-[10px] font-bold text-[#846429] dark:text-[#BA9547] uppercase tracking-wider block">
+            <div className="p-3 rounded-2xl bg-[#EBF5EF] dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/80 text-center min-w-[90px]">
+              <span className="text-[10px] font-bold text-[#1E683E] dark:text-[#34D399] uppercase tracking-wider block">
                 Annual Leave
               </span>
-              <p className="text-lg font-black text-[#846429] dark:text-[#D4AF37] mt-0.5">
+              <p className="text-lg font-black text-[#1E683E] dark:text-[#34D399] mt-0.5">
                 {employee.leaveBalances.annual.remaining} <span className="text-xs text-slate-400 font-normal">/ {employee.leaveBalances.annual.total}d</span>
               </p>
-              <span className="text-[10px] text-slate-500 font-medium">Remaining</span>
+              <span className="text-[10px] text-emerald-800 dark:text-emerald-300 font-medium">Remaining</span>
             </div>
 
             {/* Basic Salary */}
@@ -422,17 +422,17 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition whitespace-nowrap ${
+                className={`flex items-center gap-2 py-3 px-4 font-bold text-xs sm:text-sm border-b-2 transition whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'border-[#BA9547] text-[#846429] dark:text-[#D4AF37] dark:border-[#BA9547]'
-                    : 'border-transparent text-stone-500 hover:text-stone-800 dark:hover:text-stone-300'
+                    ? 'border-[#1E683E] text-[#1E683E] dark:text-[#34D399] dark:border-[#34D399]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.badge !== undefined && (
                   <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                    isActive ? 'bg-[#FAF7F2] text-[#846429] dark:bg-[#2A2318] dark:text-[#E7DEC8] border border-[#E7DEC8] dark:border-[#3D352E]' : 'bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400'
+                    isActive ? 'bg-[#EBF5EF] text-[#1E683E] dark:bg-emerald-950/60 dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800' : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
                   }`}>
                     {tab.badge}
                   </span>
@@ -449,10 +449,10 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
       {activeTab === 'overview' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Employment & Assignment */}
-          <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs space-y-4">
-            <div className="flex items-center gap-2 border-b border-[#E7DEC8]/60 dark:border-[#3D352E] pb-3">
-              <Briefcase className="w-4 h-4 text-[#BA9547]" />
-              <h3 className="text-sm font-bold text-stone-900 dark:text-white uppercase tracking-wider">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <Briefcase className="w-4 h-4 text-[#1E683E] dark:text-[#34D399]" />
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Employment & Work Assignment
               </h3>
             </div>
@@ -571,10 +571,10 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           </div>
 
           {employeeDocs.length === 0 ? (
-            <div className="bg-white dark:bg-stone-900 rounded-2xl p-12 text-center border border-[#E7DEC8] dark:border-[#3D352E]">
-              <FileText className="w-10 h-10 text-stone-300 mx-auto mb-2" />
-              <p className="text-sm font-bold text-stone-700 dark:text-stone-300">No documents in file</p>
-              <p className="text-xs text-stone-500 mt-1">Upload the employee’s passport, visa, or labor card to begin tracking.</p>
+            <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-800">
+              <FileText className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+              <p className="text-sm font-bold text-slate-700 dark:text-slate-300">No documents in file</p>
+              <p className="text-xs text-slate-500 mt-1">Upload the employee’s passport, visa, or labor card to begin tracking.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -586,12 +586,12 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 return (
                   <div
                     key={doc.id}
-                    className="bg-white dark:bg-stone-900 rounded-2xl p-5 border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs flex flex-col justify-between hover:border-[#BA9547]/50 dark:hover:border-[#BA9547]/50 transition"
+                    className="bg-white dark:bg-[#0F172A] rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between hover:border-[#1E683E]/50 dark:hover:border-[#34D399]/50 transition"
                   >
                     <div>
                       {/* Top Bar with Category & Expiry Badge */}
                       <div className="flex items-start justify-between gap-2">
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#FAF7F2] text-[#846429] dark:bg-[#2A2318] dark:text-[#E7DEC8] border border-[#E7DEC8]/60 dark:border-[#3D352E]">
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#EBF5EF] text-[#1E683E] dark:bg-emerald-950/60 dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
                           {doc.category}
                         </span>
                         <Badge variant={isExpired ? 'danger' : isExpiring ? 'warning' : 'success'} size="sm">
@@ -599,7 +599,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                         </Badge>
                       </div>
 
-                      <h4 className="font-extrabold text-sm text-stone-900 dark:text-white mt-3">
+                      <h4 className="font-extrabold text-sm text-slate-900 dark:text-white mt-3">
                         {doc.title}
                       </h4>
 
@@ -926,27 +926,27 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                 {employeePayments.map((p) => (
                   <div
                     key={p.id}
-                    className="p-4 rounded-xl bg-[#FAF7F2] dark:bg-[#1E1B18] border border-[#E7DEC8] dark:border-[#3D352E] flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-4 rounded-xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-sm text-stone-900 dark:text-white">
+                        <h4 className="font-bold text-sm text-slate-900 dark:text-white">
                           Payslip for {p.period}
                         </h4>
                         <Badge variant={p.paymentMethod === 'Cash' ? 'cash' : 'bank'} size="sm">
                           {p.paymentMethod}
                         </Badge>
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 mt-1">
-                        <span>Paid on: <strong className="font-mono text-stone-700 dark:text-stone-300">{p.paymentDate}</strong></span>
-                        <span>Voucher / Ref: <strong className="font-mono text-stone-700 dark:text-stone-300">{p.transactionReference}</strong></span>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mt-1">
+                        <span>Paid on: <strong className="font-mono text-slate-700 dark:text-slate-300">{p.paymentDate}</strong></span>
+                        <span>Voucher / Ref: <strong className="font-mono text-slate-700 dark:text-slate-300">{p.transactionReference}</strong></span>
                         {p.overtimeHours > 0 && <span>OT: {p.overtimeHours} hrs (AED {p.overtimePay})</span>}
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <div className="text-right">
-                        <span className="text-[10px] text-stone-400 block uppercase font-bold">Net Payout</span>
+                        <span className="text-[10px] text-slate-400 block uppercase font-bold">Net Payout</span>
                         <span className="text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">
                           AED {p.netAmount.toLocaleString()}
                         </span>
@@ -954,7 +954,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
 
                       <button
                         onClick={() => generatePayslipPdf(employee, p)}
-                        className="px-3 py-2 bg-[#FAF7F2] dark:bg-[#2A2318] hover:bg-[#F4ECE1] text-[#846429] dark:text-[#E7DEC8] font-bold text-xs rounded-xl transition flex items-center gap-1.5 border border-[#E7DEC8] dark:border-[#3D352E]"
+                        className="px-3 py-2 bg-[#EBF5EF] dark:bg-emerald-950/60 hover:bg-emerald-100 text-[#1E683E] dark:text-[#34D399] font-bold text-xs rounded-xl transition flex items-center gap-1.5 border border-emerald-200 dark:border-emerald-800 cursor-pointer"
                       >
                         <Printer className="w-3.5 h-3.5" />
                         <span>Download PDF Payslip</span>
@@ -971,12 +971,12 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
       {/* 5. SALARY PAYMENT TRACKING LEDGER TAB */}
       {activeTab === 'payments' && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-white dark:bg-[#0F172A] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h3 className="text-base font-bold text-stone-900 dark:text-white">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
                 Detailed Salary Payment Tracking
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-slate-500">
                 Payment method (Cash vs Bank), exact payment dates (Day, Month, Year), amounts, and audit vouchers.
               </p>
             </div>
@@ -984,7 +984,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             {auth.hasPermission('manage_payroll') && (
               <button
                 onClick={() => setIsRecordPaymentOpen(true)}
-                className="px-4 py-2 bg-[#BA9547] hover:bg-[#A17D34] text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto"
+                className="px-4 py-2 bg-[#1E683E] hover:bg-[#165130] text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
                 <span>Record Payment</span>
@@ -992,16 +992,16 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
             )}
           </div>
 
-          <div className="bg-white dark:bg-stone-900 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] overflow-hidden shadow-xs">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
             {employeePayments.length === 0 ? (
-              <div className="p-8 text-center text-stone-400 text-xs">
+              <div className="p-8 text-center text-slate-400 text-xs">
                 No salary payments logged yet.
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-left">
                   <thead>
-                    <tr className="bg-[#FAF7F2] dark:bg-[#1E1B18] text-[#846429] dark:text-[#E7DEC8] font-bold uppercase tracking-wider text-[10px] border-b border-[#E7DEC8] dark:border-[#3D352E]">
+                    <tr className="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200 dark:border-slate-800">
                       <th className="py-3 px-4">Period</th>
                       <th className="py-3 px-4">Exact Payment Date</th>
                       <th className="py-3 px-4">Payment Method</th>
@@ -1012,7 +1012,7 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
                       <th className="py-3 px-4 text-center">Receipt</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                     {employeePayments.map((p) => (
                       <tr key={p.id} className="hover:bg-[#FAF7F2]/60 dark:hover:bg-stone-800/40">
                         <td className="py-3 px-4 font-bold text-stone-900 dark:text-white">
