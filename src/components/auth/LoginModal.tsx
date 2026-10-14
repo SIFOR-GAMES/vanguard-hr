@@ -3,7 +3,6 @@ import { Lock, Mail, Eye, EyeOff, ShieldCheck, KeyRound, AlertCircle } from 'luc
 import { Modal } from '../common/Modal';
 import { auth, CREDENTIALS } from '../../services/auth';
 import { User } from '../../types/hr';
-import { RoyalEmblem } from '../common/RoyalEmblem';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -54,9 +53,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       maxWidth="md"
     >
       <div className="flex flex-col items-center justify-center pb-3 text-center">
-        <div className="p-2 rounded-2xl bg-white dark:bg-[#1C1917] border border-[#E7DEC8] dark:border-[#383129] shadow-xs mb-2">
-          <RoyalEmblem size="md" />
-        </div>
         <p className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
           Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
         </p>

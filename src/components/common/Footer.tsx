@@ -1,5 +1,4 @@
 import React from 'react';
-import { RoyalEmblem } from './RoyalEmblem';
 import { Shield, ExternalLink, Heart } from 'lucide-react';
 
 interface FooterProps {
@@ -12,7 +11,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
       {/* UAE Flag Accent Stripe */}
       <div className="h-1 w-full flex">
         <div className="h-full w-1/4 bg-[#088450]" />
-        <div className="h-full w-1/4 bg-white border-y border-slate-200 dark:border-slate-700" />
+        <div className="h-full w-1/4 bg-white border-y border-slate-200" />
         <div className="h-full w-1/4 bg-[#0F172A]" />
         <div className="h-full w-1/4 bg-[#D92D20]" />
       </div>
@@ -23,9 +22,6 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
           {/* Col 1: Emblem & Entity */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="p-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs">
-                <RoyalEmblem size="sm" />
-              </div>
               <div>
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug">
                   Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan

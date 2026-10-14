@@ -19,7 +19,6 @@ import {
 import { Employee, EmployeeDocument, SalaryPayment, AuditLog } from '../../types/hr';
 import { getDocumentExpiryStatus } from '../../services/storage';
 import { Badge } from '../common/Badge';
-import { RoyalEmblem } from '../common/RoyalEmblem';
 
 interface DashboardTabProps {
   employees: Employee[];
@@ -97,10 +96,9 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
         <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
 
-        {/* Crest Pill */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs mb-4">
-          <RoyalEmblem size="sm" />
-          <span className="font-arabic text-sm text-[#088450] dark:text-[#34D399] font-bold" dir="rtl">
+        {/* Entity Title Pill */}
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#E8F5E9] border border-emerald-200/80 shadow-xs mb-4">
+          <span className="font-arabic text-sm text-[#088450] font-bold" dir="rtl">
             مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
           </span>
         </div>

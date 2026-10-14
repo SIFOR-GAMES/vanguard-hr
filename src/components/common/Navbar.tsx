@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { User, UserRole } from '../../types/hr';
 import { Badge } from './Badge';
-import { RoyalEmblem } from './RoyalEmblem';
 
 interface NavbarProps {
   currentUser: User | null;
@@ -103,9 +102,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="p-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs flex items-center justify-center">
-                <RoyalEmblem size="sm" />
-              </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <span className="font-serif font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-slate-100 leading-tight">
