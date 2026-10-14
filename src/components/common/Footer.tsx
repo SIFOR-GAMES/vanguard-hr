@@ -30,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug">
                   Office of H.H. Sheikh Zayed Bin Hazza Bin Zayed Al Nahyan
                 </h3>
-                <p className="font-arabic text-xs text-[#1E683E] dark:text-[#34D399] font-bold mt-0.5" dir="rtl">
+                <p className="font-arabic text-xs text-[#088450] dark:text-[#34D399] font-bold mt-0.5" dir="rtl">
                   مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
                 </p>
               </div>
@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               <li>
                 <button
                   onClick={() => onSelectTab && onSelectTab('dashboard')}
-                  className="hover:text-[#1E683E] dark:hover:text-[#34D399] transition cursor-pointer"
+                  className="hover:text-[#088450] dark:hover:text-[#34D399] transition cursor-pointer"
                 >
                   Portal Overview
                 </button>
@@ -57,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               <li>
                 <button
                   onClick={() => onSelectTab && onSelectTab('employees')}
-                  className="hover:text-[#1E683E] dark:hover:text-[#34D399] transition cursor-pointer"
+                  className="hover:text-[#088450] dark:hover:text-[#34D399] transition cursor-pointer"
                 >
                   Personnel Directory
                 </button>
@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               <li>
                 <button
                   onClick={() => onSelectTab && onSelectTab('compliance')}
-                  className="hover:text-[#1E683E] dark:hover:text-[#34D399] transition cursor-pointer"
+                  className="hover:text-[#088450] dark:hover:text-[#34D399] transition cursor-pointer"
                 >
                   Document Compliance Radar
                 </button>
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               <li>
                 <button
                   onClick={() => onSelectTab && onSelectTab('payroll')}
-                  className="hover:text-[#1E683E] dark:hover:text-[#34D399] transition cursor-pointer"
+                  className="hover:text-[#088450] dark:hover:text-[#34D399] transition cursor-pointer"
                 >
                   Payroll & WPS Wages
                 </button>
@@ -88,14 +88,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
             </h4>
             <div className="space-y-2 text-xs text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium">
-                <Shield className="w-3.5 h-3.5 text-[#1E683E] dark:text-[#34D399]" />
+                <Shield className="w-3.5 h-3.5 text-[#088450] dark:text-[#34D399]" />
                 <span>Encrypted Personnel Records</span>
               </div>
               <p className="text-[11px] leading-relaxed">
                 Protected under UAE Federal Data Privacy Law. All transactions and updates are audited.
               </p>
               <div className="pt-2">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] text-[10px] font-bold border border-emerald-200 dark:border-emerald-800">
                   UAE DLS Compliant
                 </span>
               </div>

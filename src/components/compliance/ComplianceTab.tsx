@@ -200,19 +200,19 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
 
         <div 
           onClick={() => setFilterType(filterType === 'VALID' ? 'ALL' : 'VALID')}
-          className={`p-4 rounded-2xl border transition cursor-pointer ${
+          className={`card-uae p-4 rounded-2xl border transition cursor-pointer ${
             filterType === 'VALID'
-              ? 'bg-[#EBF5EF] dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-800 ring-2 ring-[#1E683E]/20'
-              : 'bg-white dark:bg-[#0F172A] border-slate-200 dark:border-slate-800 hover:border-emerald-300'
+              ? 'bg-[#E8F5E9] dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-800 ring-2 ring-[#088450]/20'
+              : 'bg-white dark:bg-[#0F172A] border-slate-200/80 dark:border-slate-800 hover:border-emerald-300'
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-[#1E683E] dark:text-[#34D399] uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-[#088450] dark:text-[#34D399] uppercase tracking-wider">
               Fully Compliant
             </span>
-            <CheckCircle2 className="w-4 h-4 text-[#1E683E] dark:text-[#34D399]" />
+            <CheckCircle2 className="w-4 h-4 text-[#088450] dark:text-[#34D399]" />
           </div>
-          <p className="text-2xl font-black text-[#1E683E] dark:text-[#34D399] mt-2 font-serif">
+          <p className="text-2xl font-black text-[#088450] dark:text-[#34D399] mt-2 font-serif">
             {validCount}
           </p>
           <p className="text-[11px] text-slate-500 mt-1">&gt; 60 days validity remaining</p>
@@ -228,7 +228,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
             placeholder="Search document title, ID, employee..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#088450] text-slate-900 dark:text-white"
           />
         </div>
 
@@ -250,7 +250,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
           {filterType !== 'ALL' && (
             <button
               onClick={() => setFilterType('ALL')}
-              className="font-bold text-[#1E683E] dark:text-[#34D399] hover:underline cursor-pointer"
+              className="font-bold text-[#088450] dark:text-[#34D399] hover:underline cursor-pointer"
             >
               Show All
             </button>
@@ -290,7 +290,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                           onClick={() => onSelectEmployee(doc.employee!)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#1E683E] dark:group-hover:text-[#34D399] transition font-serif">
+                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#088450] dark:group-hover:text-[#34D399] transition font-serif">
                             {doc.employee.firstName} {doc.employee.lastName}
                           </p>
                           <p className="text-[11px] text-slate-400 font-mono">
@@ -336,7 +336,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                       <div className="flex items-center justify-center gap-1.5">
                         <button
                           onClick={() => setPreviewDoc(doc)}
-                          className="p-1 rounded-lg text-slate-400 hover:text-[#1E683E] hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                          className="p-1 rounded-lg text-slate-400 hover:text-[#088450] hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
                           title="Preview"
                         >
                           <Eye className="w-4 h-4" />
@@ -344,7 +344,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                         {doc.employee && (
                           <button
                             onClick={() => onSelectEmployee(doc.employee!)}
-                            className="p-1 rounded-lg text-[#1E683E] dark:text-[#34D399] hover:bg-[#EBF5EF] dark:hover:bg-emerald-950 font-bold text-[11px] flex items-center cursor-pointer"
+                            className="p-1 rounded-lg text-[#088450] dark:text-[#34D399] hover:bg-[#E8F5E9] dark:hover:bg-emerald-950 font-bold text-[11px] flex items-center cursor-pointer"
                             title="Open dossier"
                           >
                             <ChevronRight className="w-4 h-4" />
@@ -382,7 +382,7 @@ export const ComplianceTab: React.FC<ComplianceTabProps> = ({
                 download={previewDoc.fileName}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 bg-[#1E683E] hover:bg-[#165130] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-xs transition cursor-pointer"
+                className="px-4 py-2 bg-[#088450] hover:bg-[#066e42] text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-xs transition cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Document</span>

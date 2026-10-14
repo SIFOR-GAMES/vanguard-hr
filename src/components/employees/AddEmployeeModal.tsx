@@ -147,7 +147,7 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
               }}
               className={`flex-1 p-3 rounded-xl border flex items-center justify-center gap-2 font-bold transition cursor-pointer ${
                 category === cat
-                  ? 'border-[#1E683E] bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] ring-2 ring-[#1E683E]/20'
+                  ? 'border-[#088450] bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] ring-2 ring-[#088450]/20'
                   : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
               }`}
             >
@@ -372,7 +372,7 @@ export const AddEmployeeModal: React.FC<AddEmployeeModalProps> = ({
           </button>
           <button
             type="submit"
-            className="px-5 py-2.5 bg-[#1E683E] hover:bg-[#165130] text-white font-bold rounded-xl shadow-xs flex items-center gap-1.5 transition cursor-pointer"
+            className="px-5 py-2.5 bg-[#088450] hover:bg-[#066e42] text-white font-bold rounded-xl shadow-xs flex items-center gap-1.5 transition cursor-pointer"
           >
             <UserPlus className="w-4 h-4" />
             <span>Register & Create Dossier File</span>

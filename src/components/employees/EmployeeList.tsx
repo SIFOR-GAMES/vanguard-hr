@@ -152,7 +152,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
             <h1 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 dark:text-white tracking-tight">
               Personnel & Staff Directory
             </h1>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
               {filteredEmployees.length} of {employees.length} Records
             </span>
           </div>
@@ -164,7 +164,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenAddModal}
-            className="px-4 py-2.5 rounded-xl bg-[#1E683E] hover:bg-[#165130] active:scale-95 text-white text-xs sm:text-sm font-bold shadow-xs flex items-center gap-2 transition cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-[#088450] hover:bg-[#066e42] active:scale-95 text-white text-xs sm:text-sm font-bold shadow-xs flex items-center gap-2 transition cursor-pointer"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Add New Personnel</span>
@@ -173,7 +173,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
       </div>
 
       {/* Control Bar: Search, View Mode, Filters Button */}
-      <div className="bg-white dark:bg-[#0F172A] p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+      <div className="bg-white dark:bg-[#0F172A] p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           
           {/* Search box */}
@@ -184,7 +184,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               placeholder="Search by name, ID, trade, mobile, passport..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-white"
+              className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#088450] text-slate-900 dark:text-white"
             />
             {searchQuery && (
               <button
@@ -202,14 +202,14 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition cursor-pointer ${
                 showFilters || hasActiveFilters
-                  ? 'bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] border-emerald-300 dark:border-emerald-800'
+                  ? 'bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] border-emerald-300 dark:border-emerald-800'
                   : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
               }`}
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>Filters</span>
               {hasActiveFilters && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1E683E]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#088450]" />
               )}
             </button>
 
@@ -219,7 +219,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-lg transition cursor-pointer ${
                   viewMode === 'grid'
-                    ? 'bg-white dark:bg-slate-700 text-[#1E683E] dark:text-[#34D399] shadow-xs'
+                    ? 'bg-white dark:bg-slate-700 text-[#088450] dark:text-[#34D399] shadow-xs'
                     : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
                 }`}
                 title="Grid Card View"
@@ -230,7 +230,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                 onClick={() => setViewMode('table')}
                 className={`p-1.5 rounded-lg transition cursor-pointer ${
                   viewMode === 'table'
-                    ? 'bg-white dark:bg-slate-700 text-[#1E683E] dark:text-[#34D399] shadow-xs'
+                    ? 'bg-white dark:bg-slate-700 text-[#088450] dark:text-[#34D399] shadow-xs'
                     : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
                 }`}
                 title="Table View"
@@ -354,7 +354,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
           </p>
           <button
             onClick={resetFilters}
-            className="mt-4 px-4 py-2 bg-[#EBF5EF] text-[#1E683E] dark:bg-emerald-950/60 dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800 font-bold text-xs rounded-xl cursor-pointer"
+            className="mt-4 px-4 py-2 bg-[#E8F5E9] text-[#088450] dark:bg-emerald-950/60 dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800 font-bold text-xs rounded-xl hover:bg-[#d4edd8] transition cursor-pointer"
           >
             Reset Filters
           </button>
@@ -370,7 +370,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
               <div
                 key={emp.id}
                 onClick={() => onSelectEmployee(emp)}
-                className="bg-white dark:bg-[#0F172A] rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] dark:hover:border-[#34D399] hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+                className="card-uae rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 hover:border-[#088450] dark:hover:border-[#34D399] transition cursor-pointer group flex flex-col justify-between"
               >
                 <div>
                   {/* Card Header */}
@@ -464,7 +464,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                 </div>
 
                 {/* Footer Action */}
-                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#1E683E] dark:text-[#34D399]">
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#088450] dark:text-[#34D399]">
                   <span>Open Dossier File</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
                 </div>
@@ -567,7 +567,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                       </td>
 
                       <td className="py-3 px-4 text-center">
-                        <span className="text-[#1E683E] dark:text-[#34D399] font-bold hover:underline flex items-center justify-center gap-0.5">
+                        <span className="text-[#088450] dark:text-[#34D399] font-bold hover:underline flex items-center justify-center gap-0.5">
                           Open Dossier <ChevronRight className="w-3.5 h-3.5" />
                         </span>
                       </td>

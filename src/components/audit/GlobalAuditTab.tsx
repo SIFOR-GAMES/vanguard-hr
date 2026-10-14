@@ -87,7 +87,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
             <h1 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 dark:text-white tracking-tight">
               Official System Audit Trail & Security Log
             </h1>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800">
               {auditLogs.length} Records
             </span>
           </div>
@@ -100,7 +100,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
           onClick={exportCsv}
           className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#0F172A] hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold transition flex items-center gap-2 self-start sm:self-auto border border-slate-200 dark:border-slate-800 cursor-pointer shadow-xs"
         >
-          <FileSpreadsheet className="w-4 h-4 text-[#1E683E] dark:text-[#34D399]" />
+          <FileSpreadsheet className="w-4 h-4 text-[#088450] dark:text-[#34D399]" />
           <span>Export Audit CSV</span>
         </button>
       </div>
@@ -114,7 +114,7 @@ export const GlobalAuditTab: React.FC<GlobalAuditTabProps> = ({ auditLogs }) => 
             placeholder="Search details, user, target..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#088450] text-slate-900 dark:text-white"
           />
         </div>
 

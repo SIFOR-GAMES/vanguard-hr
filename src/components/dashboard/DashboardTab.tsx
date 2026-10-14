@@ -90,17 +90,17 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       
-      {/* 1. BRIGHT & CLEAN HERO (u.ae Official Government Vibe) */}
-      <div className="relative rounded-3xl bg-white dark:bg-[#0F172A] p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-xs text-center overflow-hidden">
+      {/* 1. BRIGHT & AIRY HERO (u.ae Official Government Vibe) */}
+      <div className="relative rounded-3xl bg-gradient-to-b from-white via-white to-slate-50/70 dark:from-[#0F172A] dark:to-[#0A0F1D] p-8 sm:p-12 border border-slate-200/80 dark:border-slate-800 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.03)] text-center overflow-hidden">
         
-        {/* Subtle decorative background circle */}
-        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
+        {/* Subtle decorative background glow */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
 
         {/* Crest Pill */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs mb-4">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs mb-4">
           <RoyalEmblem size="sm" />
-          <span className="font-arabic text-sm text-[#1E683E] dark:text-[#34D399] font-bold" dir="rtl">
+          <span className="font-arabic text-sm text-[#088450] dark:text-[#34D399] font-bold" dir="rtl">
             مكتب سمو الشيخ زايد بن هزاع بن زايد آل نهيان
           </span>
         </div>
@@ -112,27 +112,38 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
           Welcome to the Official Human Resources & Personnel Management Portal
         </p>
 
-        {/* Central Search Box (u.ae signature experience) */}
+        {/* Central Search Box (u.ae signature experience: rounded-full with right emerald button) */}
         <div className="mt-8 max-w-2xl mx-auto relative">
-          <div className="relative flex items-center shadow-sm rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus-within:bg-white focus-within:border-[#1E683E] focus-within:ring-2 focus-within:ring-[#1E683E]/20 transition-all">
-            <div className="pl-4 pr-2 text-[#1E683E] dark:text-[#34D399]">
-              <Search className="w-5 h-5" />
+          <div className="relative flex items-center shadow-xs rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus-within:border-[#088450] focus-within:ring-2 focus-within:ring-[#088450]/20 p-1.5 pl-5 transition-all">
+            <div className="text-slate-400 pr-2.5">
+              <Search className="w-5 h-5 text-[#088450]" />
             </div>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search personnel by name, Emirates ID, trade, or designation..."
-              className="w-full py-3.5 pr-4 bg-transparent text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden font-medium"
+              className="w-full py-2 bg-transparent text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden font-medium"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="mr-3 px-2 py-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-semibold"
+                className="mr-2 px-2 py-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-semibold cursor-pointer"
               >
                 Clear
               </button>
             )}
+            <button
+              onClick={() => {
+                if (searchQuery.trim()) {
+                  onNavigateToEmployees();
+                }
+              }}
+              className="px-5 py-2.5 rounded-full bg-[#088450] hover:bg-[#066e42] active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition cursor-pointer shrink-0"
+            >
+              <span>Search</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
 
           {/* Instant Search Suggestions */}
@@ -148,14 +159,14 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
                     onSelectEmployee(emp);
                     setSearchQuery('');
                   }}
-                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-750 transition group"
+                  className="w-full px-4 py-3 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-750 transition group cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-[#1E683E] dark:text-[#34D399] border border-emerald-100 dark:border-emerald-900 flex items-center justify-center font-bold text-sm">
+                    <div className="w-9 h-9 rounded-xl bg-[#E8F5E9] dark:bg-emerald-950 text-[#088450] dark:text-[#34D399] border border-emerald-100 dark:border-emerald-900 flex items-center justify-center font-bold text-sm">
                       {emp.firstName[0]}{emp.lastName[0]}
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-[#1E683E] transition">
+                      <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-[#088450] transition">
                         {emp.firstName} {emp.lastName}
                       </p>
                       <p className="text-xs text-slate-500">
@@ -163,30 +174,30 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#1E683E] transition" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#088450] transition" />
                 </button>
               ))}
             </div>
           )}
 
-          {/* Quick Filter Shortcuts */}
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs">
+          {/* Quick Filter Shortcuts (u.ae pill style) */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
             <span className="text-slate-400 font-medium">Quick links:</span>
             <button
               onClick={onNavigateToEmployees}
-              className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition"
+              className="px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium border border-slate-200/80 dark:border-slate-700 shadow-xs transition cursor-pointer"
             >
               All Personnel ({totalEmployees})
             </button>
             <button
               onClick={onNavigateToEmployees}
-              className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition"
+              className="px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium border border-slate-200/80 dark:border-slate-700 shadow-xs transition cursor-pointer"
             >
               Labourers ({totalLabourers})
             </button>
             <button
               onClick={onNavigateToCompliance}
-              className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium border border-slate-200/80 dark:border-slate-700 shadow-xs transition cursor-pointer flex items-center gap-1.5"
             >
               <span>Document Expirations</span>
               {urgentDocs.length > 0 && (
@@ -200,13 +211,13 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
 
       </div>
 
-      {/* 2. THREE AT-A-GLANCE METRICS (Clear, Large, Zero Clutter) */}
+      {/* 2. THREE AT-A-GLANCE METRICS (Bright, Crisp, Elevated) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         
         {/* Metric 1: Total Personnel */}
         <div 
           onClick={onNavigateToEmployees}
-          className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] transition cursor-pointer group flex items-center justify-between"
+          className="card-uae p-6 rounded-2xl cursor-pointer group flex items-center justify-between"
         >
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
@@ -222,7 +233,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
               {totalStaff} Administrative • {totalLabourers} Technical Labourers
             </p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+          <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
             <Users className="w-6 h-6" />
           </div>
         </div>
@@ -230,7 +241,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
         {/* Metric 2: Compliance Health */}
         <div 
           onClick={onNavigateToCompliance}
-          className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] transition cursor-pointer group flex items-center justify-between"
+          className="card-uae p-6 rounded-2xl cursor-pointer group flex items-center justify-between"
         >
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
@@ -242,7 +253,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
               </span>
               <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
                 urgentDocs.length === 0 
-                  ? 'bg-emerald-100 text-[#1E683E] dark:bg-emerald-950 dark:text-emerald-300'
+                  ? 'bg-emerald-100 text-[#088450] dark:bg-emerald-950 dark:text-emerald-300'
                   : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
               }`}>
                 {urgentDocs.length === 0 ? 'Fully Valid' : `${urgentDocs.length} Action Needed`}
@@ -252,7 +263,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
               Passports, visas, and Emirates IDs monitored
             </p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+          <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
             <ShieldCheck className="w-6 h-6" />
           </div>
         </div>
@@ -260,7 +271,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
         {/* Metric 3: Monthly Disbursement */}
         <div 
           onClick={onNavigateToPayroll}
-          className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] transition cursor-pointer group flex items-center justify-between"
+          className="card-uae p-6 rounded-2xl cursor-pointer group flex items-center justify-between"
         >
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
@@ -275,11 +286,10 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
               WPS: AED {bankTotal.toLocaleString()} • Cash: AED {cashTotal.toLocaleString()}
             </p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-[#BA9547] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+          <div className="w-12 h-12 rounded-2xl bg-[#FEF9EE] dark:bg-amber-950/60 text-[#C5A85A] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
             <CreditCard className="w-6 h-6" />
           </div>
         </div>
-
       </div>
 
       {/* 3. KEY SERVICES & DIRECT ACCESS (u.ae Style Grid) */}
@@ -300,88 +310,96 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
           {/* Card 1: Personnel Directory */}
           <div 
             onClick={onNavigateToEmployees}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            className="card-uae p-7 rounded-2xl cursor-pointer flex flex-col justify-between group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] flex items-center justify-center mb-4 group-hover:scale-105 transition">
+              <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] flex items-center justify-center mb-5 group-hover:scale-110 transition">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#1E683E] transition">
+              <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#088450] transition">
                 Personnel Directory
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                 Browse complete employee files, job titles, trade specialities, and contact details.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#1E683E] dark:text-[#34D399]">
+            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#088450] dark:text-[#34D399]">
               <span>Open Directory</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#088450] flex items-center justify-center group-hover:bg-[#088450] group-hover:text-white transition">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
             </div>
           </div>
 
           {/* Card 2: Document Compliance */}
           <div 
             onClick={onNavigateToCompliance}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            className="card-uae p-7 rounded-2xl cursor-pointer flex flex-col justify-between group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4 group-hover:scale-105 transition">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-5 group-hover:scale-110 transition">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-blue-600 transition">
                 Compliance Radar
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                 Monitor 30/60/90-day expiry schedules and export official CSV compliance reports.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
+            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
               <span>View Expirations</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
             </div>
           </div>
 
           {/* Card 3: Payroll Center */}
           <div 
             onClick={onNavigateToPayroll}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#1E683E] hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            className="card-uae p-7 rounded-2xl cursor-pointer flex flex-col justify-between group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-[#BA9547] flex items-center justify-center mb-4 group-hover:scale-105 transition">
+              <div className="w-12 h-12 rounded-2xl bg-[#FEF9EE] dark:bg-amber-950/60 text-[#C5A85A] flex items-center justify-center mb-5 group-hover:scale-110 transition">
                 <CreditCard className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#BA9547] transition">
+              <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-[#C5A85A] transition">
                 Payroll & Wages
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
                 Process monthly wages, generate official letterhead PDF payslips, and track WPS disbursements.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#BA9547]">
+            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#C5A85A]">
               <span>Manage Payroll</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="w-8 h-8 rounded-full bg-[#FEF9EE] text-[#C5A85A] flex items-center justify-center group-hover:bg-[#C5A85A] group-hover:text-white transition">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
             </div>
           </div>
 
           {/* Card 4: Register Personnel */}
           <div 
             onClick={onOpenAddEmployee}
-            className="p-6 rounded-2xl bg-gradient-to-br from-[#1E683E] to-[#144A2B] text-white shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            className="p-7 rounded-2xl bg-gradient-to-br from-[#088450] to-[#05633C] text-white shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col justify-between group"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-4 group-hover:scale-105 transition backdrop-blur-xs">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition backdrop-blur-xs">
                 <UserPlus className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-base text-white">
                 Register Personnel
               </h3>
-              <p className="text-xs text-white/85 mt-1.5 leading-relaxed">
+              <p className="text-xs text-white/90 mt-2 leading-relaxed">
                 Add an administrative officer or specialized site technician to the official Office roster.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/20 flex items-center justify-between text-xs font-bold text-white">
+            <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold text-white">
               <span>Start Registration</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#088450] transition">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
             </div>
           </div>
 
@@ -406,23 +424,23 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
           </div>
           <button
             onClick={onNavigateToCompliance}
-            className="px-4 py-2 rounded-xl bg-[#1E683E] hover:bg-[#165130] text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-1.5 shrink-0"
+            className="px-4 py-2 rounded-xl bg-[#088450] hover:bg-[#066e42] text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-1.5 shrink-0 cursor-pointer"
           >
             <span>Review & Renew</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
       ) : (
-        <div className="p-4 rounded-2xl bg-[#EBF5EF] dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 flex items-center justify-between gap-4">
+        <div className="p-4 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-[#1E683E] dark:text-[#34D399] shrink-0" />
+            <CheckCircle2 className="w-5 h-5 text-[#088450] dark:text-[#34D399] shrink-0" />
             <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-200">
               Official Registry in Good Standing — All personnel records, visas, and Emirates IDs are active and valid.
             </p>
           </div>
           <button
             onClick={onNavigateToCompliance}
-            className="text-xs font-bold text-[#1E683E] dark:text-[#34D399] hover:underline shrink-0"
+            className="text-xs font-bold text-[#088450] dark:text-[#34D399] hover:underline shrink-0 cursor-pointer"
           >
             View Status
           </button>
@@ -430,16 +448,16 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
       )}
 
       {/* 5. EASY-TO-USE ACTIVITY & PAYMENT SWITCHER (Clean, peaceful rows) */}
-      <div className="bg-white dark:bg-[#0F172A] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+      <div className="card-uae rounded-2xl overflow-hidden">
         
         {/* Clean Pill Header */}
         <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveBottomTab('activity')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                 activeBottomTab === 'activity'
-                  ? 'bg-[#EBF5EF] dark:bg-emerald-950 text-[#1E683E] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800'
+                  ? 'bg-[#E8F5E9] dark:bg-emerald-950 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800'
                   : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
@@ -448,9 +466,9 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
             </button>
             <button
               onClick={() => setActiveBottomTab('payroll')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                 activeBottomTab === 'payroll'
-                  ? 'bg-[#EBF5EF] dark:bg-emerald-950 text-[#1E683E] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800'
+                  ? 'bg-[#E8F5E9] dark:bg-emerald-950 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-emerald-800'
                   : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
@@ -496,7 +514,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
               return (
                 <div key={pay.id} className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-4 text-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#1E683E] dark:text-[#34D399] border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-[#E8F5E9] dark:bg-slate-800 text-[#088450] dark:text-[#34D399] border border-emerald-200 dark:border-slate-700 flex items-center justify-center font-bold shrink-0">
                       <CreditCard className="w-4 h-4" />
                     </div>
                     <div>

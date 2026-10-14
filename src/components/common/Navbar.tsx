@@ -86,7 +86,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <header className="sticky top-0 z-30 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+      {/* UAE National Top Accent Stripe */}
+      <div className="h-0.5 w-full flex">
+        <div className="h-full w-1/4 bg-[#088450]" />
+        <div className="h-full w-1/4 bg-white" />
+        <div className="h-full w-1/4 bg-[#0F172A]" />
+        <div className="h-full w-1/4 bg-[#D92D20]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
@@ -94,14 +102,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={onToggleMobileSidebar}
-              className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               aria-label="Toggle Navigation"
             >
               <Menu className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="p-1 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs flex items-center justify-center">
+              <div className="p-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs flex items-center justify-center">
                 <RoyalEmblem size="sm" />
               </div>
               <div className="flex flex-col">
@@ -111,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1E683E] dark:text-[#34D399]">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#088450] dark:text-[#34D399]">
                     HR System
                   </span>
                   <span className="text-slate-300 dark:text-slate-700">•</span>
@@ -132,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 placeholder="Search personnel, ID, visa, passport..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-slate-100 placeholder-slate-400 transition"
+                className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#088450] text-slate-900 dark:text-slate-100 placeholder-slate-400 transition"
               />
               {searchQuery && (
                 <button
@@ -149,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             {/* u.ae Style Language Button */}
             <div className="hidden sm:flex items-center">
-              <span className="px-2.5 py-1 text-xs font-arabic font-bold text-[#1E683E] dark:text-[#34D399] bg-[#EBF5EF] dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-800/80 cursor-default">
+              <span className="px-2.5 py-1 text-xs font-arabic font-bold text-[#088450] dark:text-[#34D399] bg-[#E8F5E9] dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-800/80 cursor-default">
                 العربية
               </span>
             </div>
@@ -183,7 +191,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }}
                     className="w-full flex items-center gap-2 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 text-left transition"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#1E683E]" />
+                    <Download className="w-3.5 h-3.5 text-[#088450]" />
                     <span>Export JSON Backup</span>
                   </button>
                   <button
@@ -193,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }}
                     className="w-full flex items-center gap-2 px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 text-left transition"
                   >
-                    <Upload className="w-3.5 h-3.5 text-[#1E683E]" />
+                    <Upload className="w-3.5 h-3.5 text-[#088450]" />
                     <span>Import JSON Backup</span>
                   </button>
                   <div className="border-t border-slate-100 dark:border-slate-700 my-1" />
@@ -230,13 +238,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <img
                     src={currentUser.avatarUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80'}
                     alt={currentUser.name}
-                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#1E683E]/40"
+                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#088450]/40"
                   />
                   <div className="hidden md:block text-left">
                     <p className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
                       {currentUser.name}
                     </p>
-                    <p className="text-[10px] text-[#1E683E] dark:text-[#34D399] font-bold">
+                    <p className="text-[10px] text-[#088450] dark:text-[#34D399] font-bold">
                       {currentUser.role}
                     </p>
                   </div>
@@ -275,15 +283,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }}
                           className={`w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg transition ${
                             currentUser.role === r
-                              ? 'bg-[#EBF5EF] dark:bg-emerald-950/60 text-[#1E683E] dark:text-[#34D399] font-bold border border-emerald-200 dark:border-emerald-800'
+                              ? 'bg-[#E8F5E9] dark:bg-emerald-950/60 text-[#088450] dark:text-[#34D399] font-bold border border-emerald-200 dark:border-emerald-800'
                               : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                           }`}
                         >
                           <span className="flex items-center gap-2">
-                            <ShieldCheck className="w-3.5 h-3.5 text-[#1E683E]" />
+                            <ShieldCheck className="w-3.5 h-3.5 text-[#088450]" />
                             {r}
                           </span>
-                          {currentUser.role === r && <CheckCircle2 className="w-3.5 h-3.5 text-[#1E683E]" />}
+                          {currentUser.role === r && <CheckCircle2 className="w-3.5 h-3.5 text-[#088450]" />}
                         </button>
                       ))}
                     </div>
@@ -306,7 +314,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button
                 onClick={onOpenLogin}
-                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-[#1E683E] hover:bg-[#165130] active:scale-95 rounded-xl shadow-xs transition"
+                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-[#088450] hover:bg-[#066e42] active:scale-95 rounded-xl shadow-xs transition cursor-pointer"
               >
                 <LogIn className="w-3.5 h-3.5" />
                 <span>Sign In</span>
@@ -319,7 +327,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* u.ae Horizontal Navigation Sub-bar */}
-      <div className="border-t border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-[#0F172A]/80 hidden md:block">
+      <div className="border-t border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-[#0F172A]/90 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex space-x-8 text-xs sm:text-sm font-semibold">
             {[
@@ -336,7 +344,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => onSelectTab && onSelectTab(item.id as any)}
                   className={`py-3.5 border-b-2 font-bold transition flex items-center gap-1.5 cursor-pointer ${
                     isActive
-                      ? 'border-[#1E683E] text-[#1E683E] dark:text-[#34D399] dark:border-[#34D399]'
+                      ? 'border-[#088450] text-[#088450] dark:text-[#34D399] dark:border-[#34D399]'
                       : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300'
                   }`}
                 >

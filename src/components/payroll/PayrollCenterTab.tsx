@@ -89,7 +89,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
 
       {/* Financial KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-5 rounded-2xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-xs">
+        <div className="card-uae p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800">
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
             Total Payout Disbursed
           </span>
@@ -101,9 +101,9 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
           </p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[#EBF5EF] dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 shadow-xs">
+        <div className="card-uae p-5 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-[#1E683E] dark:text-[#34D399] uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-[#088450] dark:text-[#34D399] uppercase tracking-wider flex items-center gap-1.5">
               <CreditCard className="w-4 h-4" />
               Bank Transfer (WPS)
             </span>
@@ -112,12 +112,12 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
           <p className="text-2xl font-black text-slate-900 dark:text-white mt-2 font-mono">
             AED {bankTotal.toLocaleString()}
           </p>
-          <p className="text-[11px] text-[#1E683E] dark:text-emerald-300 mt-1">
+          <p className="text-[11px] text-[#088450] dark:text-emerald-300 mt-1">
             Direct bank routing for administrative & technical personnel
           </p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700 shadow-xs">
+        <div className="card-uae p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
               <Banknote className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -143,7 +143,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
             placeholder="Search personnel, ID, ref..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E683E] text-slate-900 dark:text-white"
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#088450] text-slate-900 dark:text-white"
           />
         </div>
 
@@ -205,7 +205,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                           onClick={() => onSelectEmployee(emp)}
                           className="cursor-pointer group"
                         >
-                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#1E683E] dark:group-hover:text-[#34D399] transition font-serif">
+                          <p className="font-bold text-slate-900 dark:text-white group-hover:text-[#088450] dark:group-hover:text-[#34D399] transition font-serif">
                             {emp.firstName} {emp.lastName}
                           </p>
                           <p className="text-[11px] text-slate-400 font-mono">
@@ -251,7 +251,7 @@ export const PayrollCenterTab: React.FC<PayrollCenterTabProps> = ({
                       {emp && (
                         <button
                           onClick={() => generatePayslipPdf(emp, p)}
-                          className="px-2.5 py-1.5 bg-[#EBF5EF] hover:bg-emerald-100 dark:bg-emerald-950/80 text-[#1E683E] dark:text-[#34D399] font-bold rounded-lg transition inline-flex items-center gap-1 border border-emerald-200 dark:border-emerald-800 cursor-pointer"
+                          className="px-2.5 py-1.5 bg-[#E8F5E9] hover:bg-[#d4edd8] dark:bg-emerald-950/80 text-[#088450] dark:text-[#34D399] font-bold rounded-lg transition inline-flex items-center gap-1 border border-emerald-200 dark:border-emerald-800 cursor-pointer"
                           title="Generate Official Payslip PDF"
                         >
                           <Printer className="w-3 h-3" />

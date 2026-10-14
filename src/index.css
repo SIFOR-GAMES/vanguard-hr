@@ -5,17 +5,21 @@
     --bg-stationery: #F8FAFC;
     --card-stationery: #FFFFFF;
     --border-stationery: #E2E8F0;
-    --gold-primary: #BA9547;
-    --gold-dark: #1E683E;
+    --emerald-uae: #088450;
+    --emerald-light: #E8F5E9;
+    --gold-uae: #C5A85A;
+    --gold-light: #FEF9EE;
     --text-primary: #0F172A;
   }
 
   .dark {
     --bg-stationery: #0B1120;
-    --card-stationery: #151E32;
+    --card-stationery: #0F172A;
     --border-stationery: #1E293B;
-    --gold-primary: #D4AF37;
-    --gold-dark: #34D399;
+    --emerald-uae: #34D399;
+    --emerald-light: #064E3B;
+    --gold-uae: #D4AF37;
+    --gold-light: #2A2318;
     --text-primary: #F8FAFC;
   }
 
@@ -30,12 +34,12 @@
   }
 
   ::selection {
-    background-color: #1E683E;
+    background-color: #088450;
     color: #FFFFFF;
   }
 }
 
-/* Custom royal gold scrollbars */
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -46,39 +50,45 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(186, 149, 71, 0.35);
+  background: rgba(8, 132, 80, 0.25);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(161, 125, 52, 0.65);
+  background: rgba(8, 132, 80, 0.5);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(186, 149, 71, 0.3);
+  background: rgba(52, 211, 153, 0.25);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6);
+  background: rgba(52, 211, 153, 0.5);
 }
 
-/* Luxury gold text shine helper */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #7A5B1E 0%, #BA9547 50%, #8A6B2D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* u.ae Style Elevated Cards */
+.card-uae {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark .text-gold-gradient {
-  background: linear-gradient(135deg, #F3DEAB 0%, #D4AF37 50%, #E6C275 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.card-uae:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(8, 132, 80, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  border-color: rgba(8, 132, 80, 0.3);
 }
 
-/* Subtle stationery card shadow */
-.stationery-card {
-  background-color: var(--card-stationery);
-  border: 1px solid var(--border-stationery);
-  box-shadow: 0 1px 3px 0 rgba(70, 55, 30, 0.04), 0 1px 2px -1px rgba(70, 55, 30, 0.04);
+.dark .card-uae {
+  background-color: #0F172A;
+  border: 1px solid #1E293B;
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.dark .card-uae:hover {
+  transform: translateY(-2px);
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.4);
 }
 

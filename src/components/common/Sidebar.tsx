@@ -92,7 +92,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               }}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-semibold transition-all group ${
                 isActive
-                  ? 'bg-[#1E683E] text-white shadow-md shadow-[#1E683E]/20'
+                  ? 'bg-[#088450] text-white shadow-md shadow-[#088450]/20'
                   : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80'
               }`}
             >
@@ -101,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className={`p-2 rounded-lg transition ${
                     isActive
                       ? 'bg-white/20 text-white'
-                      : 'bg-slate-50 dark:bg-slate-800 text-[#1E683E] dark:text-[#34D399] group-hover:bg-slate-100 dark:group-hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                      : 'bg-slate-50 dark:bg-slate-800 text-[#088450] dark:text-[#34D399] group-hover:bg-slate-100 dark:group-hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -110,7 +110,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <div className="flex items-center gap-2">
                     <span className="truncate">{item.label}</span>
                     {item.highlight && !isActive && (
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1E683E]" />
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#088450]" />
                     )}
                   </div>
                   <p
@@ -127,7 +127,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <span
                   className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
                     isActive
-                      ? 'bg-white text-[#1E683E]'
+                      ? 'bg-white text-[#088450]'
                       : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-200 dark:border-rose-900'
                   }`}
                 >
@@ -171,7 +171,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Footer Info */}
       <div className="px-5 pt-4 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-400 dark:text-slate-500">
         <p className="font-serif font-bold text-slate-800 dark:text-slate-200">Office of H.H. Sh. Zayed Bin Hazza</p>
-        <p className="text-[10px] text-[#1E683E] dark:text-[#34D399] font-medium mt-0.5">HR Operations System</p>
+        <p className="text-[10px] text-[#088450] dark:text-[#34D399] font-medium mt-0.5">HR Operations System</p>
       </div>
     </div>
   );
