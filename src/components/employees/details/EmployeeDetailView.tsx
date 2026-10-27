@@ -345,14 +345,16 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {/* Quick Stats on Right */}
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-4 md:pt-0 md:pl-6 shrink-0">
             {/* Annual Leave Gauge */}
-            <div className="p-3 rounded-2xl bg-[#E8F5E9] dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/80 text-center min-w-[90px]">
-              <span className="text-[10px] font-bold text-[#088450] dark:text-[#34D399] uppercase tracking-wider block">
-                Annual Leave
+            <div className="p-3 rounded-2xl bg-[#E8F5E9] border border-emerald-200 text-center min-w-[115px]">
+              <span className="text-[10px] font-bold text-[#088450] uppercase tracking-wider block">
+                Yearly Off Days Left
               </span>
-              <p className="text-lg font-black text-[#088450] dark:text-[#34D399] mt-0.5">
-                {employee.leaveBalances.annual.remaining} <span className="text-xs text-slate-400 font-normal">/ {employee.leaveBalances.annual.total}d</span>
+              <p className="text-lg font-black text-[#088450] mt-0.5 font-mono">
+                {employee.leaveBalances.annual.remaining} <span className="text-xs text-slate-500 font-normal">/ {employee.leaveBalances.annual.total}d</span>
               </p>
-              <span className="text-[10px] text-emerald-800 dark:text-emerald-300 font-medium">Remaining</span>
+              <span className="text-[10px] text-emerald-800 font-medium">
+                {employee.leaveBalances.annual.taken}d used this year
+              </span>
             </div>
 
             {/* Basic Salary */}
@@ -543,6 +545,94 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
               </div>
             </div>
           </div>
+
+          {/* Yearly Off Days & Leave Summary Card */}
+          <div className="md:col-span-2 card-uae rounded-2xl p-6 border border-slate-200/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-[#088450]" />
+                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                  Yearly Off Days &amp; Leave Entitlement
+                </h3>
+              </div>
+              <button
+                onClick={() => setActiveTab('leaves')}
+                className="text-xs font-bold text-[#088450] hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto"
+              >
+                <span>Manage Off Days &amp; History</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-[#E8F5E9]/70 border border-emerald-200 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#088450] uppercase tracking-wider">
+                    Yearly Off Days Left
+                  </span>
+                  <span className="text-[11px] font-bold text-slate-500">
+                    Total: {employee.leaveBalances.annual.total}d / yr
+                  </span>
+                </div>
+                <div className="my-2 flex items-baseline gap-2">
+                  <span className="text-3xl font-black text-[#088450] font-mono">
+                    {employee.leaveBalances.annual.remaining}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-600">days left</span>
+                </div>
+                <div className="w-full bg-white h-2 rounded-full overflow-hidden border border-emerald-200">
+                  <div
+                    className="bg-[#088450] h-full rounded-full"
+                    style={{
+                      width: `${Math.max(0, Math.min(100, (employee.leaveBalances.annual.remaining / (employee.leaveBalances.annual.total || 30)) * 100))}%`,
+                    }}
+                  />
+                </div>
+                <p className="text-[11px] text-slate-600 mt-1.5 font-medium">
+                  {employee.leaveBalances.annual.taken} days used • {employee.leaveBalances.annual.remaining} days remaining
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    Sick Leave Left
+                  </span>
+                  <span className="text-[11px] font-bold text-slate-400">
+                    Total: {employee.leaveBalances.sick.total}d
+                  </span>
+                </div>
+                <div className="my-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-slate-900 font-mono">
+                    {employee.leaveBalances.sick.remaining}
+                  </span>
+                  <span className="text-xs text-slate-500">days left</span>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  {employee.leaveBalances.sick.taken} days used
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    Emergency Off Days Left
+                  </span>
+                  <span className="text-[11px] font-bold text-slate-400">
+                    Total: {employee.leaveBalances.emergency.total}d
+                  </span>
+                </div>
+                <div className="my-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-slate-900 font-mono">
+                    {employee.leaveBalances.emergency.remaining}
+                  </span>
+                  <span className="text-xs text-slate-500">days left</span>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  {employee.leaveBalances.emergency.taken} days used
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
@@ -668,30 +758,30 @@ export const EmployeeDetailView: React.FC<EmployeeDetailViewProps> = ({
           {/* Three Tier Balance Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Annual Leave */}
-            <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-[#E7DEC8] dark:border-[#3D352E] shadow-xs space-y-3">
+            <div className="card-uae p-5 rounded-2xl border border-emerald-200 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-[#846429] dark:text-[#D4AF37] uppercase tracking-wider">
-                  Annual Leave
+                <span className="text-xs font-bold text-[#088450] uppercase tracking-wider">
+                  Yearly Off Days Left
                 </span>
-                <span className="text-xs font-bold text-stone-400">
-                  Allocation: {employee.leaveBalances.annual.total}d
+                <span className="text-xs font-bold text-slate-400">
+                  Entitlement: {employee.leaveBalances.annual.total}d / yr
                 </span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-black text-stone-900 dark:text-white">
+                <span className="text-3xl font-black text-[#088450] font-mono">
                   {employee.leaveBalances.annual.remaining}
                 </span>
-                <span className="text-xs text-stone-500">days available</span>
+                <span className="text-xs font-semibold text-slate-500">days left</span>
               </div>
               {/* Progress bar */}
-              <div className="w-full bg-stone-100 dark:bg-stone-800 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                 <div 
-                  className="bg-[#BA9547] h-full" 
-                  style={{ width: `${Math.min(100, (employee.leaveBalances.annual.taken / employee.leaveBalances.annual.total) * 100)}%` }} 
+                  className="bg-[#088450] h-full" 
+                  style={{ width: `${Math.min(100, (employee.leaveBalances.annual.remaining / employee.leaveBalances.annual.total) * 100)}%` }} 
                 />
               </div>
-              <p className="text-[11px] text-stone-500">
-                {employee.leaveBalances.annual.taken} days taken to date
+              <p className="text-[11px] text-slate-500">
+                {employee.leaveBalances.annual.taken} days used • {employee.leaveBalances.annual.remaining} days remaining
               </p>
             </div>
 

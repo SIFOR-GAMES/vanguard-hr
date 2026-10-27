@@ -172,7 +172,12 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#088450] transition" />
+                  <div className="flex items-center gap-3">
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E8F5E9] text-[#088450] border border-emerald-200">
+                      {emp.leaveBalances.annual.remaining} / {emp.leaveBalances.annual.total}d off left
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#088450] transition" />
+                  </div>
                 </button>
               ))}
             </div>

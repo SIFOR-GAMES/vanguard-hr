@@ -13,6 +13,7 @@ import {
   CreditCard, 
   Banknote,
   SlidersHorizontal,
+  Calendar,
   X
 } from 'lucide-react';
 import { Employee, EmployeeDocument } from '../../types/hr';
@@ -441,6 +442,27 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                     </div>
                   )}
 
+                  {/* Yearly Off Days Left Banner */}
+                  <div className="mt-3 p-2.5 rounded-xl bg-[#E8F5E9]/70 border border-emerald-200/80 flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="flex items-center gap-1.5 font-bold text-[#088450]">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>Yearly Off Days Left</span>
+                      </span>
+                      <span className="font-extrabold text-[#088450] font-mono">
+                        {emp.leaveBalances.annual.remaining} <span className="text-[11px] font-medium text-slate-500">/ {emp.leaveBalances.annual.total} days</span>
+                      </span>
+                    </div>
+                    <div className="w-full bg-white/80 h-1.5 rounded-full overflow-hidden border border-emerald-100">
+                      <div
+                        className="bg-[#088450] h-full rounded-full transition-all"
+                        style={{
+                          width: `${Math.max(0, Math.min(100, (emp.leaveBalances.annual.remaining / (emp.leaveBalances.annual.total || 30)) * 100))}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+
                   {/* Quick Details */}
                   <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
                     <div className="flex items-center justify-between">
@@ -483,6 +505,7 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                   <th className="py-3 px-4">ID & Trade</th>
                   <th className="py-3 px-4">Department & Site</th>
                   <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4">Yearly Off Days</th>
                   <th className="py-3 px-4">Compliance</th>
                   <th className="py-3 px-4">Payment Method</th>
                   <th className="py-3 px-4 text-right">Basic Salary</th>
@@ -538,6 +561,14 @@ export const EmployeeList: React.FC<EmployeeListProps> = ({
                         >
                           {emp.employment.status}
                         </Badge>
+                      </td>
+
+                      <td className="py-3 px-4">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8F5E9] border border-emerald-200 text-[#088450] font-bold">
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>{emp.leaveBalances.annual.remaining}d left</span>
+                          <span className="text-[10px] font-normal text-slate-500">/ {emp.leaveBalances.annual.total}d</span>
+                        </div>
                       </td>
 
                       <td className="py-3 px-4">
